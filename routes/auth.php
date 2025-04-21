@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -15,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
-        ->name('/register');
+        ->name('register');
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 
@@ -59,76 +57,3 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
-
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/add', function () {
-    return view('addProduct');
-});
-
-Route::get('/admin', function () {
-    return view('adminPage');
-});
-
-Route::get('/cart', function () {
-    return view('cart');
-});
-
-Route::get('/empty', function () {
-    return view('cartFallback');
-});
-
-Route::get('/checkout', function () {
-    return view('checkout');
-});
-
-Route::get('/edit', function () {
-    return view('editProduct');
-});
-
-Route::get('/dashboard', function () {
-    return view('landingPage');
-});
-
-Route::get('/history', function () {
-    return view('orderHistoryPage');
-});
-
-Route::get('/order', function () {
-    return view('orderPage');
-});
-
-Route::get('/success', function () {
-    return view('orderSuccess');
-});
-
-Route::get('/product', function () {
-    return view('productPage');
-});
-
-Route::get('/amps', function () {
-    return view('productsAmps');
-});
-
-Route::get('/basses', function () {
-    return view('productsBasses');
-});
-
-Route::get('/guitars', function () {
-    return view('productsGuitars');
-});
-
-Route::get('/user', function () {
-    return view('userPage');
-});
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
