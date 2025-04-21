@@ -87,7 +87,7 @@
         <div
         class="row-span-2 w-full row-start-11 lg:row-span-1 lg:row-start-6 lg:col-span-3 flex flex-col sm:flex-row sm:justify-between items-center px-8">
         <div class="p-4">
-          <a href="adminPage.html">
+          <a href="{{ route('adminPage') }}">
           <button class="text-primary border border-primary h-10 w-48 px-10 rounded-md cursor-pointer"
             type="button">
             Go back

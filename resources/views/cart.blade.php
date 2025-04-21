@@ -104,7 +104,7 @@
       <div class="bg-outline rounded-md p-4 w-full max-w-md lg:w-full lg:max-w-md">
       <article class="grid gap-2 h-40 place-items-center font-bold text-center">
         <span class="text-primary text-3xl">Total: 2836€</span>
-        <a href="checkout.html">
+        <a href="{{ route('checkout') }}">
         <button class="bg-primary text-white h-10 w-44 rounded-md cursor-pointer">To Checkout</button>
         </a>
       </article>
@@ -229,7 +229,7 @@
 
     <!-- View All button -->
     <div class="col-span-full flex justify-center mb-4">
-    <a href="productsGuitars.html">
+    <a href="{{ route('productsGuitars') }}">
       <button
       class="bg-primary hover:bg-red-600 text-white text-sm md:text-lg md:px-6 px-4 py-2 rounded-md cursor-pointer">
       View All

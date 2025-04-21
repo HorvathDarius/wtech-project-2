@@ -216,7 +216,7 @@
       </div>
       <!-- PLACE ORDER BUTTON -->
       <div class="w-full h-20 flex flex-col gap-4 justify-center items-center">
-      <a href="orderSuccess.html" class="w-full">
+      <a href="{{ route('orderSuccess') }}" class="w-full">
         <button type="submit" class="bg-primary text-white h-10 w-full px-10 rounded-md cursor-pointer">
         Place Order
         </button>

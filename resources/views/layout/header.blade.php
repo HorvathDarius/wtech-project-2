@@ -2,19 +2,19 @@
     <nav class="bg-outline h-20 flex items-center font-bold px-4 sm:px-10 justify-between">
         <div class="flex sm:gap-6 items-center">
             <div class="w-20 h-20">
-                <a href="landingPage.html" class="cursor-pointer">
+                <a href="{{ route('/') }}" class="cursor-pointer">
                     <img src="/images/Logo.png" alt="StringShop logo" />
                 </a>
             </div>
             <div class="flex gap-4 sm:gap-10">
-                <a href="productsGuitars.html">Guitars</a>
-                <a href="productsBasses.html">Basses</a>
-                <a href="productsAmps.html">Amps</a>
+                <a href="{{ route('productsGuitars') }}">Guitars</a>
+                <a href="{{ route('productsBasses') }}">Basses</a>
+                <a href="{{ route('productsAmps') }}">Amps</a>
             </div>
         </div>
 
         <div class="flex gap-4 sm:gap-10">
-            <a href="login">
+            <a href="{{ route('userPage') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -22,7 +22,7 @@
                 </svg>
             </a>
 
-            <a href="cartFallback.html">
+            <a href="{{ route('cart') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round"

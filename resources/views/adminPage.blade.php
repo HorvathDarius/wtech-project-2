@@ -6,7 +6,7 @@
     <div class="w-full rounded-md border-1 border-outline flex flex-col">
     <div class="w-full flex justify-between items-center pt-2 px-4">
       <p class="w-full text-lg sm:text-xl px-8 py-2 font-bold text-[#DC443C]">Products</p>
-      <a href="addProduct.html" class="h-10 w-80">
+      <a href="{{ route('addProduct') }}" class="h-10 w-80">
       <button class="bg-primary text-sm sm:text-lg text-white w-full h-full px-10 rounded-md cursor-pointer">
         Add Product
       </button>
@@ -41,7 +41,7 @@
         </p>
 
         <div class="flex flex-col gap-4">
-        <a href="editProduct.html">
+        <a href="{{ route('editProduct') }}">
           <button class="bg-primary text-white h-10 w-48 px-10 rounded-md cursor-pointer">
           Edit Product
           </button>
@@ -74,7 +74,7 @@
         stretched over a flat or slightly curved body...
         </p>
         <div class="flex flex-col gap-4">
-        <a href="editProduct.html">
+        <a href="{{ route('editProduct') }}">
           <button class="bg-primary text-white h-10 w-48 px-10 rounded-md cursor-pointer">
           Edit Product
           </button>
@@ -107,7 +107,7 @@
         stretched over a flat or slightly curved body...
         </p>
         <div class="flex flex-col gap-4">
-        <a href="editProduct.html">
+        <a href="{{ route('editProduct') }}">
           <button class="bg-primary text-white h-10 w-48 px-10 rounded-md cursor-pointer">
           Edit Product
           </button>
@@ -119,12 +119,21 @@
       </div>
       </div>
 
+
+
       <!-- PAGINATOR -->
-      <div class="w-full h-10">
+      <div class="w-full h-14 flex justify-between items-center p-2">
+      <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button class="bg-primary text-white h-10 w-40 rounded-md cursor-pointer" type="submit">
+        Log out
+        </button>
+      </form>
+
       <nav class="w-full h-full">
         <ul class="w-full h-full flex gap-2 items-center justify-center lg:justify-end px-10 font-bold">
         <li>
-          << /li>
+          < </li>
         <li class="flex text-white bg-primary w-6 h-8 justify-center items-center rounded-lg">1</li>
         <li class="flex w-6 h-8 justify-center items-center rounded-lg">2</li>
         <li class="flex w-6 h-8 justify-center items-center rounded-lg">3</li>

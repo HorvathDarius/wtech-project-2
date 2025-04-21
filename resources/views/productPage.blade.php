@@ -56,7 +56,7 @@
     <!-- Quantity & Button -->
     <div class="flex items-center space-x-4">
       <input type="number" value="1" min="1" max="100" step="1" class="border rounded p-1" />
-      <a href="cart.html">
+      <a href="{{ route('cart') }}">
       <button class="bg-primary hover:bg-primary text-white px-4 py-2 rounded">Add to Cart</button>
       </a>
     </div>

@@ -6,11 +6,14 @@
     <div
     class="row-span-1 col-span-1 row-start-1 col-start-1 sm:row-span-1 sm:col-span-4 sm:row-start-1 sm:col-start-1 lg:row-span-1 lg:col-span-1 bg-outline rounded-md">
     <article class="w-full h-full flex flex-col justify-around items-center font-bold">
-      <a href="userPage.html" class="text-primary">Account</a>
-      <a href="orderHistoryPage.html">Order History</a>
-      <a href="login.html">
-      <button class="bg-primary text-white h-10 w-40 px-10 rounded-md cursor-pointer">Log Out</button>
-      </a>
+      <a href="{{ route('userPage') }}" class="text-primary">Account</a>
+      <a href="{{ route('orderHistory') }}">Order History</a>
+      <form action="{{ route('logout') }}" method="POST">
+      @csrf
+      <button class="bg-primary text-white h-10 w-40 px-10 rounded-md cursor-pointer" type="submit">
+        Log out
+      </button>
+      </form>
     </article>
     </div>
 
@@ -202,7 +205,7 @@
         </tbody>
       </table>
       </div>
-      <a href="orderHistoryPage.html">
+      <a href="{{ route('orderHistory') }}">
       <button class="bg-primary text-white h-10 px-10 rounded-md mb-4 cursor-pointer">View all Orders</button>
       </a>
     </div>

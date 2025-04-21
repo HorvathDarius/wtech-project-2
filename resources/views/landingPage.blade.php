@@ -13,7 +13,7 @@
     <div class="absolute inset-0 grid md:place-items-end md:pr-16 z-10">
       <div class="text-right space-y-4 md:-translate-y-16 md:-translate-x-4 transform translate-y-50 -translate-x-4">
       <h1 class="text-black text-sm md:text-5xl font-bold">New limited time offer</h1>
-      <a href="product_page.html">
+      <a href="{{ route('productPage') }}">
         <button
         class="bg-primary hover:bg-red-600 text-white text-sm md:text-lg md:px-6 px-1 py-1 rounded-md cursor-pointer">
         Learn More
@@ -31,7 +31,8 @@
     <div
     class="container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-y-10 place-items-center">
     <!-- Single Product Card -->
-    <a href="product_page.html" class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
+    <a href="{{ route('productPage') }}"
+      class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
       <div class="relative h-64 flex items-center justify-center">
       <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
@@ -45,7 +46,8 @@
       </div>
     </a>
     <!-- Single Product Card -->
-    <a href="product_page.html" class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
+    <a href="{{ route('productPage') }}"
+      class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
       <div class="relative h-64 flex items-center justify-center">
       <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
@@ -59,7 +61,8 @@
       </div>
     </a>
     <!-- Single Product Card -->
-    <a href="product_page.html" class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
+    <a href="{{ route('productPage') }}"
+      class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
       <div class="relative h-64 flex items-center justify-center">
       <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
@@ -73,7 +76,8 @@
       </div>
     </a>
     <!-- Single Product Card -->
-    <a href="product_page.html" class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
+    <a href="{{ route('productPage') }}"
+      class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
       <div class="relative h-64 flex items-center justify-center">
       <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
@@ -87,7 +91,7 @@
       </div>
     </a>
     <!-- Single Product Card -->
-    <a href="product_page.html" class="hidden 2xl:block border rounded shadow overflow-hidden w-60 col-span-1">
+    <a href="{{ route('productPage') }}" class="hidden 2xl:block border rounded shadow overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
       <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
@@ -101,7 +105,7 @@
       </div>
     </a>
     <!-- Single Product Card -->
-    <a href="product_page.html" class="hidden 2xl:block border rounded shadow overflow-hidden w-60 col-span-1">
+    <a href="{{ route('productPage') }}" class="hidden 2xl:block border rounded shadow overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
       <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
@@ -117,7 +121,7 @@
 
     <!-- View All button -->
     <div class="col-span-full flex justify-center">
-      <a href="productsGuitars.html">
+      <a href="{{ route('productsGuitars') }}">
       <button
         class="bg-primary hover:bg-red-600 text-white text-sm md:text-lg md:px-6 px-4 py-2 rounded-md cursor-pointer">
         View All
@@ -132,7 +136,7 @@
     <div
     class="container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-y-10 place-items-center">
     <!-- Single Product Card -->
-    <a href="product_page.html" class="block border rounded shadow overflow-hidden w-60 col-span-1">
+    <a href="{{ route('productPage') }}" class="block border rounded shadow overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
       <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
@@ -146,7 +150,8 @@
       </div>
     </a>
     <!-- Single Product Card -->
-    <a href="product_page.html" class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
+    <a href="{{ route('productPage') }}"
+      class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
       <div class="relative h-64 flex items-center justify-center">
       <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
@@ -160,7 +165,7 @@
       </div>
     </a>
     <!-- Single Product Card -->
-    <a href="product_page.html" class="hidden md:block border rounded shadow overflow-hidden w-60 col-span-1">
+    <a href="{{ route('productPage') }}" class="hidden md:block border rounded shadow overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
       <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
@@ -174,7 +179,7 @@
       </div>
     </a>
     <!-- Single Product Card -->
-    <a href="product_page.html" class="hidden lg:block border rounded shadow overflow-hidden w-60 col-span-1">
+    <a href="{{ route('productPage') }}" class="hidden lg:block border rounded shadow overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
       <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
@@ -188,7 +193,7 @@
       </div>
     </a>
     <!-- Single Product Card -->
-    <a href="product_page.html" class="hidden 2xl:block border rounded shadow overflow-hidden w-60 col-span-1">
+    <a href="{{ route('productPage') }}" class="hidden 2xl:block border rounded shadow overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
       <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
@@ -202,7 +207,7 @@
       </div>
     </a>
     <!-- Single Product Card -->
-    <a href="product_page.html" class="hidden 2xl:block border rounded shadow overflow-hidden w-60 col-span-1">
+    <a href="{{ route('productPage') }}" class="hidden 2xl:block border rounded shadow overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
       <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
@@ -218,28 +223,12 @@
 
     <!-- View All button -->
     <div class="col-span-full flex justify-center">
-      <a href="productsBasses.html">
+      <a href="{{ route('productsBasses') }}">
       <button
         class="bg-primary hover:bg-red-600 text-white text-sm md:text-lg md:px-6 px-4 py-2 rounded-md cursor-pointer">
         View All
       </button>
       </a>
     </div>
-    </div>
-
-    <!-- Paginator-->
-    <div class="w-full h-10">
-    <nav class="w-full h-full">
-      <ul class="w-full h-full flex gap-2 items-center justify-center px-10 font-bold">
-      <li>
-        < </li>
-      <li class="flex text-white bg-primary w-6 h-8 justify-center items-center rounded-lg">1</li>
-      <li class="flex w-6 h-8 justify-center items-center rounded-lg">2</li>
-      <li class="flex w-6 h-8 justify-center items-center rounded-lg">3</li>
-      <li class="flex w-6 h-8 justify-center items-center rounded-lg">4</li>
-      <li class="flex w-6 h-8 justify-center items-center rounded-lg">5</li>
-      <li>></li>
-      </ul>
-    </nav>
     </div>
   @endsection

@@ -10,12 +10,11 @@
       <!-- MAIN IMAGE -->
       <div
         class="row-span-2 lg:row-span-4 lg:col-span-1 lg:col-start-1 lg:row-start-1 flex justify-center items-center my-4">
-        <img src="../assets/uploadImage.png" alt="uploadImage" class="w-60 h-60 lg:w-80 lg:h-80 border" />
+        <img src="/images/uploadImage.png" alt="uploadImage" class="w-60 h-60 lg:w-80 lg:h-80 border" />
       </div>
       <!-- SMALLER IMAGES -->
       <div class="row-span-1 row-start-3 lg:row-span-1 lg:col-span-1 lg:col-start-1 lg:row-start-5 flex px-10 gap-6">
-        <img src="../assets/uploadImage.png" alt="uploadImage" class="w-20 h-20 border" />
-        <!-- <img src="../assets/uploadImage.png/" alt="" class="w-20 h-20 border" /> -->
+        <img src="/images/uploadImage.png" alt="uploadImage" class="w-20 h-20 border" />
       </div>
       <!-- PRODUCT NAME INPUT -->
       <div class="row-span-1 row-start-4 lg:row-span-1 lg:col-span-1 lg:col-start-2 lg:row-start-1 flex flex-col p-2">
@@ -70,7 +69,7 @@
       <!-- BUTTONS SECTION -->
       <div
         class="row-span-1 w-full row-start-11 lg:row-span-1 lg:row-start-6 lg:col-span-3 flex flex-col sm:flex-row sm:justify-between items-center px-10 gap-4">
-        <a href="adminPage.html">
+        <a href="{{ route('adminPage') }}">
         <button class="text-primary border border-primary h-10 w-80 sm:w-48 px-10 rounded-md cursor-pointer"
           type="button">
           Go back

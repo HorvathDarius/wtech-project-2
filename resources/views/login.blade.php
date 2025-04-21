@@ -12,7 +12,8 @@
     </div>
 
     <!-- LOGIN FORM -->
-    <form action="landingPage.html" method="post" class="flex flex-col gap-8">
+    <form action="{{ route('login') }}" method="post" class="flex flex-col gap-8">
+      @csrf
       <div class="flex flex-col gap-2">
       <label for="email">E-mail <span class="text-red-600"></span></label>
       <input id="email" name="email" type="text" class="w-80 h-10 bg-gray-200 rounded-sm" required />

@@ -16,10 +16,10 @@
     <p class="text-xl font-bold text-primary">Your order was placed successfully</p>
     <p class="text-lg">Your order will be delivered soon!</p>
     <div class="flex flex-col gap-4">
-      <a href="orderPage.html">
+      <a href="{{ route('orderPage') }}">
       <button class="bg-primary text-white h-10 w-60 px-10 rounded-md cursor-pointer">See Order</button>
       </a>
-      <a href="landingPage.html">
+      <a href="{{ route('/') }}">
       <button class="text-white bg-primary h-10 w-60 px-10 rounded-md cursor-pointer">Continue Shopping</button>
       </a>
     </div>

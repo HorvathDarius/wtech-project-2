@@ -15,17 +15,17 @@
     <form method="POST" action="{{ route('register') }}" class="flex flex-col gap-8">
       @csrf
       <div class="flex flex-col gap-2">
-        <label for="name">Your Name <span class="text-red-600">*</span></label>
-        <input id="name" name="name" type="text" class="w-80 h-10 bg-gray-200 rounded-sm" required />
-        <label for="email">E-mail <span class="text-red-600">*</span></label>
-        <input id="email" name="email" type="text" class="w-80 h-10 bg-gray-200 rounded-sm" required />
-        <label for="password">Password <span class="text-red-600">*</span></label>
-        <input id="password" name="password" type="password" class="w-80 h-10 bg-gray-200 rounded-sm" required />
-        <label for="confirm-password">Confirm password <span class="text-red-600">*</span></label>
-        <input id="confirm-password" name="confirm-password" type="password" class="w-80 h-10 bg-gray-200 rounded-sm"
-            required />
-        </div>
-        <button type="submit" class="bg-primary w-80 h-10 rounded-md text-white cursor-pointer">Register</button>
+      <label for="name">Your Name <span class="text-red-600">*</span></label>
+      <input id="name" name="name" type="text" class="w-80 h-10 bg-gray-200 rounded-sm" required />
+      <label for="email">E-mail <span class="text-red-600">*</span></label>
+      <input id="email" name="email" type="text" class="w-80 h-10 bg-gray-200 rounded-sm" required />
+      <label for="password">Password <span class="text-red-600">*</span></label>
+      <input id="password" name="password" type="password" class="w-80 h-10 bg-gray-200 rounded-sm" required />
+      <label for="confirm-password">Confirm password <span class="text-red-600">*</span></label>
+      <input id="confirm-password" name="confirm-password" type="password" class="w-80 h-10 bg-gray-200 rounded-sm"
+        required />
+      </div>
+      <button type="submit" class="bg-primary w-80 h-10 rounded-md text-white cursor-pointer">Register</button>
     </form>
     <p>
       Already have an account?
