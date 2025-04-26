@@ -83,18 +83,40 @@ class DatabaseSeeder extends Seeder
             'name_on_card' => 'Guest User 2',
         ]);
 
-        $categories = ['Guitar', 'Bass', 'Amp'];
-        $colors = ['Red', 'Blue', 'Black'];
+        $categories = ['guitar', 'bass', 'amp'];
+        $colors = ['red', 'blue', 'black'];
 
         for ($i = 0; $i < 50; $i++) {
+            $name = Str::random(5);
             Product::create([
-                'product_name' => 'Product ' . Str::random(5),
+                'product_visible_name' => $name,
+                'product_link_name' => $name . '-' . $colors[0],
                 'product_price' => rand(100, 1000),
                 'product_category' => $categories[array_rand($categories)],
-                'product_color' => $colors[array_rand($colors)],
+                'product_color' => $colors[0],
                 'quantity' => rand(1, 50),
                 'product_description' => 'This is a great instrument.',
-                'product_image' => null,
+                'product_image' => 'guitar_placeholder.webp',
+            ]);
+            Product::create([
+                'product_visible_name' => $name,
+                'product_link_name' => $name . '-' . $colors[1],
+                'product_price' => rand(100, 1000),
+                'product_category' => $categories[array_rand($categories)],
+                'product_color' => $colors[1],
+                'quantity' => rand(1, 50),
+                'product_description' => 'This is a great instrument.',
+                'product_image' => 'guitar_placeholder.webp',
+            ]);
+            Product::create([
+                'product_visible_name' => $name,
+                'product_link_name' => $name . '-' . $colors[2],
+                'product_price' => rand(100, 1000),
+                'product_category' => $categories[array_rand($categories)],
+                'product_color' => $colors[1],
+                'quantity' => rand(1, 50),
+                'product_description' => 'This is a great instrument.',
+                'product_image' => 'guitar_placeholder.webp',
             ]);
         }
 
@@ -116,8 +138,7 @@ class DatabaseSeeder extends Seeder
 
         ShoppingCart::create([
             'id' => 1,
-            'user_id'=> $users[array_rand($users)],
+            'user_id' => $users[array_rand($users)],
         ]);
-
     }
 }

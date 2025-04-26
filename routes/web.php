@@ -17,6 +17,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 
 Route::get('/guitars', [ProductGuitarsController::class, 'index'])->name('productsGuitars');
 
+Route::get('/guitars/{product_link_name}', [ProductGuitarsController::class, 'showProduct'])->name('showGuitar');
 
 Route::get('/add', function () {
     return view('addProduct');
@@ -72,11 +73,6 @@ Route::get('/basses', function () {
     return view('productsBasses');
 })->name('productsBasses');
 
-// Route::get('/guitars', function () {
-//     return view('productsGuitars');
-// })->name('productsGuitars');
-
 Route::get('/user', function () {
     return view('userPage');
 })->name('userPage');
-
