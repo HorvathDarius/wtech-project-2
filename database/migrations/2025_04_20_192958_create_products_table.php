@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('product_name');
+            $table->string('product_visible_name');
+            $table->string('product_link_name');
             $table->float('product_price');
-            $table->enum('product_category', ['Guitar', "Bass", "Amp"]);
-            $table->enum('product_color', ['Red', "Blue", "Black"]);
+            $table->enum('product_category', ['guitar', "bass", "amp"]);
+            $table->enum('product_color', ['red', "blue", "black"]);
             $table->integer('quantity');
             $table->string('product_description');
             $table->string('product_image')->nullable();
