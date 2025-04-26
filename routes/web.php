@@ -3,7 +3,9 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProductGuitarsController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('registerView');
 
@@ -25,7 +27,7 @@ Route::get('/add', function () {
 
 Route::get('/admin', function () {
     return view('adminPage');
-})->name('adminPage');
+})->name('adminPage')->middleware(['auth']);
 
 Route::get('/cart', function () {
     return view('cart');
@@ -45,7 +47,7 @@ Route::get('/edit', function () {
 
 Route::get('/', function () {
     return view('landingPage');
-})->name('/');
+})->name('dashboard');
 
 Route::get('/history', function () {
     return view('orderHistoryPage');
@@ -73,6 +75,8 @@ Route::get('/basses', function () {
     return view('productsBasses');
 })->name('productsBasses');
 
-Route::get('/user', function () {
-    return view('userPage');
-})->name('userPage');
+// Route::get('/user', function () {
+//     return view('userPage');
+// })->name('userPage')->middleware(['auth']);
+
+Route::get('/user/{id}', [ProfileController::class, 'show'])->name('userPage')->middleware(['auth']);

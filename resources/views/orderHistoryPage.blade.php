@@ -6,7 +6,7 @@
     <div
     class="row-span-1 col-span-1 sm:row-span-1 sm:col-span-1 sm:row-start-1 sm:col-start-1 lg:row-span-1 lg:col-span-1 bg-outline rounded-md m-4">
     <article class="w-full h-full flex flex-col justify-around items-center font-bold">
-      <a href="{{ route('userPage') }}">Account</a>
+      <a href="{{ route('userPage', ['id' => Auth::user()->id]) }}">Account</a>
       <a href="{{ route('orderHistory') }}" class="text-primary">Order History</a>
       <form action="{{ route('logout') }}" method="POST">
       @csrf

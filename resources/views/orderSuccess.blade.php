@@ -19,7 +19,7 @@
       <a href="{{ route('orderPage') }}">
       <button class="bg-primary text-white h-10 w-60 px-10 rounded-md cursor-pointer">See Order</button>
       </a>
-      <a href="{{ route('/') }}">
+      <a href="{{ route('dashboard') }}">
       <button class="text-white bg-primary h-10 w-60 px-10 rounded-md cursor-pointer">Continue Shopping</button>
       </a>
     </div>
