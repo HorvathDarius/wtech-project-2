@@ -57,6 +57,7 @@ Route::get('/success', function () {
 Route::get('/product', function () {
     return view('productPage');
 })->name('productPage');
+Route::get('/productGuitar', 'ProductGuitarsController@index')->name('productGuitar.index');
 
 Route::get('/amps', function () {
     return view('productsAmps');

@@ -109,171 +109,24 @@
       </div>
     </a>
 
-    <!-- Single Product Card -->
-    <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
-      <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-      </div>
-      <div class="p-4">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-        <button class="text-xl">🛒</button>
-      </div>
-      </div>
-    </a>
+    @foreach($products as $item)
+        <!-- Single Product Card -->
+        <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
+        <div class="relative h-64 flex items-center justify-center">
+            <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+        </div>
+        <div class="p-4">
+            <h3 class="font-bold text-l">{{$item->product_name}}</h3>
+            <p class="text-sm">599 €</p>
+            <p class="text-sm text-gray-600">3 colors</p>
+            <div class="flex justify-end mt-2">
+                <button class="text-xl">🛒</button>
+            </div>
+        </div>
+        </a>
+    @endforeach
 
-    <!-- Single Product Card -->
-    <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
-      <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-      </div>
-      <div class="p-4">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-        <button class="text-xl">🛒</button>
-      </div>
-      </div>
-    </a>
 
-    <!-- Single Product Card -->
-    <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
-      <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-      </div>
-      <div class="p-4">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-        <button class="text-xl">🛒</button>
-      </div>
-      </div>
-    </a>
-
-    <!-- Single Product Card -->
-    <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
-      <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-      </div>
-      <div class="p-4">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-        <button class="text-xl">🛒</button>
-      </div>
-      </div>
-    </a>
-
-    <!-- Single Product Card -->
-    <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
-      <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-      </div>
-      <div class="p-4">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-        <button class="text-xl">🛒</button>
-      </div>
-      </div>
-    </a>
-
-    <!-- Single Product Card -->
-    <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
-      <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-      </div>
-      <div class="p-4">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-        <button class="text-xl">🛒</button>
-      </div>
-      </div>
-    </a>
-
-    <!-- Single Product Card -->
-    <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
-      <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-      </div>
-      <div class="p-4">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-        <button class="text-xl">🛒</button>
-      </div>
-      </div>
-    </a>
-
-    <!-- Single Product Card -->
-    <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
-      <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-      </div>
-      <div class="p-4">
-      <h3 class="font-bold text-lg">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-        <button class="text-xl">🛒</button>
-      </div>
-      </div>
-    </a>
-
-    <!-- Single Product Card -->
-    <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
-      <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-      </div>
-      <div class="p-4">
-      <h3 class="font-bold text-lg">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-        <button class="text-xl">🛒</button>
-      </div>
-      </div>
-    </a>
-
-    <!-- Single Product Card -->
-    <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
-      <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-      </div>
-      <div class="p-4">
-      <h3 class="font-bold text-lg">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-        <button class="text-xl">🛒</button>
-      </div>
-      </div>
-    </a>
-
-    <!-- Single Product Card -->
-    <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
-      <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-      </div>
-      <div class="p-4">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-        <button class="text-xl">🛒</button>
-      </div>
-      </div>
-    </a>
-    </div>
     <!-- Paginator-->
     <div class="w-full h-10">
     <nav class="w-full h-full">
