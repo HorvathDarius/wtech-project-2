@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Order;
+use App\Models\PaymentInformation;
+use App\Models\User;
+use Faker\Provider\ar_EG\Payment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +15,22 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    /**
+     * Display the specified resource.
+     */
+    public function show(Request $request, string $id)
+    {
+        $user = Auth::user();
+        $user = User::find($user->id);
+        $paymentInformation = $user->paymentInformation;
+        $orders = Order::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->take(4)
+            ->get();
+
+        return view('userPage', ['user' => $user, 'paymentInfo' => $paymentInformation, 'orders' => $orders]);
+    }
+
     /**
      * Display the user's profile form.
      */
@@ -55,6 +75,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return Redirect::to('dashboard');
     }
 }
