@@ -93,54 +93,25 @@
 
     <!-- Product Grid -->
     <div
-    class="container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-y-10 place-items-center">
-    <!-- Single Product Card -->
-    <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
-      <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-      </div>
-      <div class="p-4">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-        <button class="text-xl">🛒</button>
-      </div>
-      </div>
-    </a>
+        class="container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-y-10 place-items-center">
 
-    @foreach($products as $item)
-        <!-- Single Product Card -->
-        <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
-        <div class="relative h-64 flex items-center justify-center">
-            <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-        </div>
-        <div class="p-4">
-            <h3 class="font-bold text-l">{{$item->product_name}}</h3>
-            <p class="text-sm">599 €</p>
-            <p class="text-sm text-gray-600">3 colors</p>
-            <div class="flex justify-end mt-2">
-                <button class="text-xl">🛒</button>
+        @foreach($products as $item)
+            <!-- Single Product Card -->
+            <a href="product_page.html" class="border rounded shadow overflow-hidden w-60 col-span-1">
+            <div class="relative h-64 flex items-center justify-center">
+                <img src="\images\guitars\{{$item->product_image}}" alt="thumb1" class="object-cover" />
             </div>
-        </div>
-        </a>
-    @endforeach
-
-
-    <!-- Paginator-->
-    <div class="w-full h-10">
-    <nav class="w-full h-full">
-      <ul class="w-full h-full flex gap-2 items-center justify-center px-10 font-bold">
-      <li>
-        < </li>
-      <li class="flex text-white bg-primary w-6 h-8 justify-center items-center rounded-lg">1</li>
-      <li class="flex w-6 h-8 justify-center items-center rounded-lg">2</li>
-      <li class="flex w-6 h-8 justify-center items-center rounded-lg">3</li>
-      <li class="flex w-6 h-8 justify-center items-center rounded-lg">4</li>
-      <li class="flex w-6 h-8 justify-center items-center rounded-lg">5</li>
-      <li>></li>
-      </ul>
-    </nav>
+            <div class="p-4">
+                <h3 class="font-bold text-l">{{$item->product_name}}</h3>
+                <p class="text-sm">{{$item->product_price}} €</p>
+                <p class="text-sm text-gray-600">3 colors</p>
+                <div class="flex justify-end mt-2">
+                    <button class="text-xl">🛒</button>
+                </div>
+            </div>
+            </a>
+        @endforeach
     </div>
+    {{$products->links()}}
   </main>
 @endsection

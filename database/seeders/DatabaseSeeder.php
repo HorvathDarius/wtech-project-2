@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
         $categories = ['Guitar', 'Bass', 'Amp'];
         $colors = ['Red', 'Blue', 'Black'];
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             Product::create([
                 'product_name' => 'Product ' . Str::random(5),
                 'product_price' => rand(100, 1000),

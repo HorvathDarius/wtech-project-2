@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\ProductGuitarsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('registerView');
@@ -13,6 +14,9 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('l
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+Route::get('/guitars', [ProductGuitarsController::class, 'index'])->name('productsGuitars');
+
 
 Route::get('/add', function () {
     return view('addProduct');
@@ -57,6 +61,7 @@ Route::get('/success', function () {
 Route::get('/product', function () {
     return view('productPage');
 })->name('productPage');
+
 Route::get('/productGuitar', 'ProductGuitarsController@index')->name('productGuitar.index');
 
 Route::get('/amps', function () {
@@ -67,9 +72,9 @@ Route::get('/basses', function () {
     return view('productsBasses');
 })->name('productsBasses');
 
-Route::get('/guitars', function () {
-    return view('productsGuitars');
-})->name('productsGuitars');
+// Route::get('/guitars', function () {
+//     return view('productsGuitars');
+// })->name('productsGuitars');
 
 Route::get('/user', function () {
     return view('userPage');
