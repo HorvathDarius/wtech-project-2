@@ -7,7 +7,7 @@
     class="row-span-1 col-span-1 h-40 sm:h-80 sm:row-span-1 sm:col-span-1 sm:row-start-1 sm:col-start-1 lg:row-span-1 lg:col-span-1 bg-outline rounded-md">
     <article class="w-full h-full flex flex-col justify-around items-center font-bold">
       <a href="{{ route('userPage', ['id' => Auth::user()->id]) }}">Account</a>
-      <a href="{{ route('orderHistory') }}" class="text-primary">Order History</a>
+      <a href="{{ route('order.index') }}" class="text-primary">Order History</a>
       <a href="{{ route('logout') }}">
       <button class="bg-primary text-white h-10 w-40 px-10 rounded-md cursor-pointer">Log Out</button>
       </a>
@@ -18,8 +18,14 @@
     <div
     class="row-span-7 col-span-1 row-start-2 sm:col-span-3 sm:row-span-2 sm:row-start-1 sm:col-start-2 lg:row-span-2 lg:row-start-1 lg:col-start-2 lg:col-span-4 rounded-md border-1 border-outline flex flex-col h-full w-full">
     <div class="flex gap-4 mt-4 mx-4">
-      <span class="text-xl font-bold text-primary">Order #12345</span>
+      <span class="text-xl font-bold text-primary">Order #{{ $order->id}}</span>
+      @if ($order->status == 'delivered')
       <span class="bg-green-200 px-4 py-1 border border-green-600 rounded-lg text-green-600"> Delivered </span>
+    @elseif ($order->order_status == 'preparing')
+      <span class="bg-orange-200 px-4 py-1 border border-orange-600 rounded-lg text-orange-500"> Preparing </span>
+    @else
+      <span class="bg-red-200 px-4 py-1 border border-red-600 rounded-lg text-red-600"> Cancelled </span>
+    @endif
     </div>
 
     <div
@@ -29,57 +35,24 @@
       class="m-4 border border-outline rounded-md row-span-2 row-start-1 sm:row-span-2 sm:row-start-1 lg:row-span-4 lg:col-span-1 lg:row-start-1 lg:col-start-1 p-4 flex flex-col items-center gap-4">
       <!-- SCROLLABLE CONTAINER -->
       <div class="flex flex-col h-80 w-full gap-4 overflow-scroll">
-        <!-- ONE PRODUCT -->
-        <div class="w-full flex items-center gap-4">
-        <img src="/images/guitars/guitar_placeholder.webp" alt="guitarPlaceholder" class="w-40 h-40" />
-        <div class="flex flex-col gap-2">
-          <p class="text-lg font-bold">Product Name</p>
-          <article class="text-md font-light">
-          <span>Qty: </span>
-          <span>1x</span>
-          <span class="font-bold text-primary">750 €</span>
-          </article>
-        </div>
-        </div>
 
-        <!-- ONE PRODUCT -->
-        <div class="w-full flex items-center gap-4">
-        <img src="/images/guitars/lava.webp" alt="guitarPlaceholder" class="w-40 h-40" />
-        <div class="flex flex-col gap-2">
-          <p class="text-lg font-bold">Product Name</p>
-          <article class="text-md font-light">
-          <span>Qty: </span>
-          <span>1x</span>
-          <span class="font-bold text-primary">1000 €</span>
-          </article>
-        </div>
-        </div>
+        @foreach ($order->products as $product)
 
-        <!-- ONE PRODUCT -->
-        <div class="w-full flex items-center gap-4">
-        <img src="/images/basses/bassPlaceholder.webp" alt="guitarPlaceholder" class="w-40 h-40" />
-        <div class="flex flex-col gap-2">
-          <p class="text-lg font-bold">Product Name</p>
-          <article class="text-md font-light">
-          <span>Qty: </span>
-          <span>1x</span>
-          <span class="font-bold text-primary">300 €</span>
-          </article>
-        </div>
-        </div>
+      <!-- ONE PRODUCT -->
+      <div class="w-full flex items-center gap-4">
+      <img src="{{'/images/' . $product->product->product_category . '/' . $product->product->product_image}}"
+        alt="guitarPlaceholder" class="w-40 h-40 object-cover" />
+      <div class="flex flex-col gap-2">
+        <p class="text-lg font-bold">{{ $product->product->product_visible_name}}</p>
+        <article class="text-md font-light">
+        <span>Qty: </span>
+        <span>{{$product->quantity}}x</span>
+        <span class="font-bold text-primary">{{ $product->product->product_price }} €</span>
+        </article>
+      </div>
+      </div>
+    @endforeach
 
-        <!-- ONE PRODUCT -->
-        <div class="w-full flex items-center gap-4">
-        <img src="/images/amps/ampPlaceholder.webp" alt="guitarPlaceholder" class="w-40 h-40" />
-        <div class="flex flex-col gap-2">
-          <p class="text-lg font-bold">Product Name</p>
-          <article class="text-md font-light">
-          <span>Qty: </span>
-          <span>2x</span>
-          <span class="font-bold text-primary">250 €</span>
-          </article>
-        </div>
-        </div>
       </div>
 
       <!-- TOTAL PRICE -->
@@ -88,15 +61,15 @@
         <tbody>
           <tr>
           <td class="w-2/3 md:w-3/4">Sub-total:</td>
-          <td class="w-1/3 md:w-1/4 text-primary">2550 €</td>
+          <td class="w-1/3 md:w-1/4 text-primary">{{ $subTotal }} €</td>
           </tr>
           <tr>
           <td>Shipping:</td>
-          <td class="text-primary">30 €</td>
+          <td class="text-primary">{{ $deliveryPrice }} €</td>
           </tr>
           <tr class="border-t-4 border-primary text-xl font-bold">
           <td>Total:</td>
-          <td class="text-primary">2580 €</td>
+          <td class="text-primary">{{ $order->total_price }} €</td>
           </tr>
         </tbody>
         </table>
@@ -115,37 +88,43 @@
           <tr>
           <td class="font-bold pt-4">Address:</td>
           <td>
-            <p>Yellow Street 123</p>
+            <p>{{ $order->address}}</p>
           </td>
           </tr>
           <tr>
           <td class="font-bold pt-4">Country:</td>
           <td>
-            <p>Slovakia</p>
+            <p>{{ $order->country}}</p>
           </td>
           </tr>
           <tr>
           <td class="font-bold pt-4">Region:</td>
           <td>
-            <p>Bratislava</p>
+            <p>{{ $order->region }}</p>
           </td>
           </tr>
           <tr>
           <td class="font-bold pt-4">City:</td>
           <td>
-            <p>Bratislava</p>
+            <p>{{ $order->city }}</p>
           </td>
           </tr>
           <tr>
           <td class="font-bold pt-4">Zip Code:</td>
           <td>
-            <p>123 45</p>
+            <p>{{ $order->zip_code }}</p>
           </td>
           </tr>
           <tr>
           <td class="font-bold pt-4">Shipping Method:</td>
           <td>
-            <p>Express Delivery</p>
+            @if ($order->shipping_method == 'standard-delivery')
+        <p>Standard Delivery</p>
+      @elseif ($order->shipping_method == 'express-delivery')
+    <p>Express Delivery</p>
+  @else
+  <p>Pickup</p>
+@endif
           </td>
           </tr>
         </tbody>
@@ -165,19 +144,19 @@
           <tr>
           <td class="font-bold pt-4">Ordered On:</td>
           <td>
-            <p>1.1.2025</p>
+            <p>{{ $createdAt }}</p>
           </td>
           </tr>
           <tr>
           <td class="font-bold pt-4">Expected Delivery:</td>
           <td>
-            <p>3.1.2025</p>
+            <p> {{ $expectedDelivery }}</p>
           </td>
           </tr>
           <tr>
           <td class="font-bold pt-4">Payment Method:</td>
           <td>
-            <p>Google Pay</p>
+            <p>Card</p>
           </td>
           </tr>
         </tbody>
@@ -187,9 +166,17 @@
     </div>
 
     <div class="grid grid-rows-1 grid-cols-1 lg:grid-cols-2 w-full p-4 sm:pt-0">
-      <button class="bg-primary text-white h-10 px-10 rounded-md col-span-1 lg:col-start-2 cursor-pointer">
+      @if ($order->order_status === 'preparing')
+
+      <form action="{{ route('order.update', $order->id) }}" method="POST">
+      @csrf
+      @method('PUT')
+      <button class="bg-primary text-white h-10 px-10 rounded-md col-span-1 lg:col-start-2 cursor-pointer"
+      name="order_status" value="cancelled" type="submit">
       Cancel Order
       </button>
+      </form>
+    @endif
     </div>
     </div>
   </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductGuitarsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -30,9 +31,6 @@ Route::get('/admin', function () {
     return view('adminPage');
 })->name('adminPage')->middleware(['auth']);
 
-// Route::get('/cart', function () {
-//     return view('cart');
-// })->name('cart');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
@@ -42,9 +40,12 @@ Route::get('/empty', function () {
     return view('cartFallback');
 })->name('cartFallback');
 
-Route::get('/checkout', function () {
-    return view('checkout');
-})->name('checkout');
+
+Route::get('/order', [OrderController::class, 'index'])->name('order.index');
+Route::get('/checkout', [OrderController::class, 'create'])->name('order.create');
+Route::get('/order/{id}', [OrderController::class, 'show'])->name('order.show');
+Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+Route::put('/order/{id}', [OrderController::class, 'update'])->name('order.update');
 
 Route::get('/edit', function () {
     return view('editProduct');
@@ -53,14 +54,6 @@ Route::get('/edit', function () {
 Route::get('/', function () {
     return view('landingPage');
 })->name('dashboard');
-
-Route::get('/history', function () {
-    return view('orderHistoryPage');
-})->name('orderHistory');
-
-Route::get('/order', function () {
-    return view('orderPage');
-})->name('orderPage');
 
 Route::get('/success', function () {
     return view('orderSuccess');
@@ -79,9 +72,5 @@ Route::get('/amps', function () {
 Route::get('/basses', function () {
     return view('productsBasses');
 })->name('productsBasses');
-
-// Route::get('/user', function () {
-//     return view('userPage');
-// })->name('userPage')->middleware(['auth']);
 
 Route::get('/user/{id}', [ProfileController::class, 'show'])->name('userPage')->middleware(['auth']);

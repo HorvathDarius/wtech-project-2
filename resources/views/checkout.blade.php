@@ -3,8 +3,9 @@
 @section('content')
   <main class="w-full h-full overflow-scroll lg:pb-14">
     <div class="w-full h-10 flex justify-center items-center text-primary font-bold text-xl">Checkout</div>
-    <form action="orderSuccess.html" method="post"
+    <form action="{{ route('order.store') }}" method="POST" {{-- <form action="/random" method="POST" --}}
     class="grid grid-cols-1 grid-rows-6 sm:grid-cols-1 sm:grid-rows-2 lg:grid-cols-3 lg:grid-rows-1 gap-4 px-4">
+    @csrf
     <!-- LEFT CONTAINER -->
     <div
       class="row-span-4 col-span-1 row-start-1 col-start-1 sm:row-span-1 sm:col-span-1 sm:row-start-1 sm:col-start-1 lg:row-span-1 lg:col-span-2 lg:row-start-1 lg:col-start-1 border border-outline rounded-lg p-4">
@@ -18,55 +19,64 @@
       <div
         class="p-2 row-span-1 col-span-1 row-start-1 col-start-1 md:row-span-1 md:col-span-1 md:row-start-1 md:col-start-1">
         <label for="firstName">First Name <span class="text-red-600">*</span></label>
-        <input id="firstName" name="firstName" type="text" class="w-full h-8 bg-gray-200 rounded-sm" required />
+        <input id="firstName" name="firstName" type="text" value={{ explode(' ', $user->name, 2)[0] ?? '' }}
+        class="w-full h-8 bg-gray-200 rounded-sm" required />
       </div>
       <!-- LAST NAME -->
       <div
         class="p-2 row-span-1 col-span-1 row-start-2 col-start-1 md:row-span-1 md:col-span-1 md:row-start-1 md:col-start-2">
         <label for="lastName">Last Name <span class="text-red-600">*</span></label>
-        <input id="lastName" name="lastName" type="text" class="w-full h-8 bg-gray-200 rounded-sm" required />
+        <input id="lastName" name="lastName" type="text" value={{ explode(' ', $user->name, 2)[1] }}
+        class="w-full h-8 bg-gray-200 rounded-sm" required />
       </div>
       <!-- EMAIL -->
       <div
         class="p-2 row-span-1 col-span-1 row-start-3 col-start-1 md:row-span-1 md:col-span-1 md:row-start-2 md:col-start-1">
         <label for="email">E-mail <span class="text-red-600">*</span></label>
-        <input id="email" name="email" type="email" class="w-full h-8 bg-gray-200 rounded-sm" required />
+        <input id="email" name="email" type="email" value="{{ $user->email }}"
+        class="w-full h-8 bg-gray-200 rounded-sm" required />
       </div>
       <!-- PHONE NUMBER -->
       <div
         class="p-2 row-span-1 col-span-1 row-start-4 col-start-1 md:row-span-1 md:col-span-1 md:row-start-2 md:col-start-2">
-        <label for="phoneNumber">Phone Number <span class="text-red-600">*</span></label>
-        <input id="phoneNumber" name="phoneNumber" type="text" class="w-full h-8 bg-gray-200 rounded-sm" required />
+        <label for="phone-number">Phone Number <span class="text-red-600">*</span></label>
+        <input id="phone-number" name="phone-number" type="text" value="{{ $user->phone_number }}"
+        class="w-full h-8 bg-gray-200 rounded-sm" required />
       </div>
       <!-- ADDRESS -->
       <div
         class="p-2 row-span-1 col-span-1 row-start-5 col-start-1 md:row-span-1 md:col-span-2 md:row-start-3 md:col-start-1">
         <label for="address">Address <span class="text-red-600">*</span></label>
-        <input id="address" name="address" type="text" class="w-full h-8 bg-gray-200 rounded-sm" required />
+        <input id="address" name="address" type="text" value="{{ $user->address }}"
+        class="w-full h-8 bg-gray-200 rounded-sm" required />
       </div>
       <!-- COUNTRY -->
       <div
         class="p-2 row-span-1 col-span-1 row-start-6 col-start-1 md:row-span-1 md:col-span-1 md:row-start-4 md:col-start-1">
         <label for="country">Country <span class="text-red-600">*</span></label>
-        <input id="country" name="country" type="text" class="w-full h-8 bg-gray-200 rounded-sm" required />
+        <input id="country" name="country" type="text" value="{{ $user->country }}"
+        class="w-full h-8 bg-gray-200 rounded-sm" required />
       </div>
       <!-- REGION -->
       <div
         class="p-2 row-span-1 col-span-1 row-start-7 col-start-1 md:row-span-1 md:col-span-1 md:row-start-4 md:col-start-2">
         <label for="region">Region <span class="text-red-600">*</span></label>
-        <input id="region" name="region" type="text" class="w-full h-8 bg-gray-200 rounded-sm" required />
+        <input id="region" name="region" type="text" value="{{ $user->region }}"
+        class="w-full h-8 bg-gray-200 rounded-sm" required />
       </div>
       <!-- CITY -->
       <div
         class="p-2 row-span-1 col-span-1 row-start-8 col-start-1 md:row-span-1 md:col-span-1 md:row-start-5 md:col-start-1">
         <label for="city">City <span class="text-red-600">*</span></label>
-        <input id="city" name="city" type="text" class="w-full h-8 bg-gray-200 rounded-sm" required />
+        <input id="city" name="city" type="text" value="{{ $user->city }}" class="w-full h-8 bg-gray-200 rounded-sm"
+        required />
       </div>
       <!-- ZIP CODE -->
       <div
         class="p-2 row-span-1 col-span-1 row-start-9 col-start-1 md:row-span-1 md:col-span-1 md:row-start-5 md:col-start-2">
-        <label for="zipCode">Zip Code <span class="text-red-600">*</span></label>
-        <input id="zipCode" name="zipCode" type="text" class="w-full h-8 bg-gray-200 rounded-sm" required />
+        <label for="zip_code">Zip Code <span class="text-red-600">*</span></label>
+        <input id="zip_code" name="zip_code" type="text" value="{{ $user->zip_code }}"
+        class="w-full h-8 bg-gray-200 rounded-sm" required />
       </div>
       <!-- DELIVERY CHECKBOXES -->
       <div
@@ -74,24 +84,27 @@
         <label for="colors">Delivery Options <span class="text-red-600">*</span></label>
         <div class="w-full flex flex-col md:flex-row justify-between py-2" id="colors">
         <div class="flex justify-center items-center gap-4">
-          <input id="redColor" name="redColor" type="checkbox" class="h-6 w-6 accent-primary rounded-sm px-2" />
-          <label for="redColor">
+          <input id="standard-delivery" value="standard-delivery" name="delivery" type="radio"
+          class="h-6 w-6 accent-primary rounded-sm px-2" />
+          <label for="standard-delivery">
           <p>Standard Delivery</p>
           <p class="font-light">(5-7 days)</p>
           <p class="text-xs font-light">(additional charges)</p>
           </label>
         </div>
         <div class="flex justify-center items-center gap-4">
-          <input id="blueColor" name="blueColor" type="checkbox" class="h-6 w-6 accent-primary rounded-sm" />
-          <label for="blueColor">
+          <input id="express-delivery" value="express-delivery" name="delivery" type="radio"
+          class="h-6 w-6 accent-primary rounded-sm" />
+          <label for="express">
           Express Delivery
           <p class="font-light">(1-3 days)</p>
           <p class="text-xs font-light">(additional charges)</p>
           </label>
         </div>
         <div class="flex justify-center items-center gap-4">
-          <input id="blackColor" name="blackColor" type="checkbox" class="h-6 w-6 accent-primary rounded-sm" />
-          <label for="blackColor">
+          <input id="pickup" value="pickup" name="delivery" type="radio"
+          class="h-6 w-6 accent-primary rounded-sm" />
+          <label for="pickup">
           Pickup at our Store
           <p class="font-light">(no charges)</p>
           </label>
@@ -107,8 +120,9 @@
       </div>
       <div
         class="p-2 row-span-1 col-span-1 row-start-12 col-start-1 md:row-span-1 md:col-span-1 md:row-start-8 md:col-start-2">
-        <label for="cardName">Name on Card <span class="text-red-600">*</span></label>
-        <input id="cardName" name="cardName" type="text" class="w-full h-8 bg-gray-200 rounded-sm" required />
+        <label for="card-name">Name on Card <span class="text-red-600">*</span></label>
+        <input id="card-name" name="card-name" type="text" value="{{ $paymentInfo->name_on_card }}"
+        class="w-full h-8 bg-gray-200 rounded-sm" required />
       </div>
       <div
         class="p-2 row-span-1 col-span-1 row-start-17 col-start-1 md:row-span-1 md:col-span-1 md:row-start-9 md:col-start-1 flex items-center">
@@ -118,8 +132,9 @@
       </div>
       <div
         class="p-2 row-span-1 col-span-1 row-start-13 col-start-1 md:row-span-1 md:col-span-1 md:row-start-9 md:col-start-2">
-        <label for="cardNumber">Card Number <span class="text-red-600">*</span></label>
-        <input id="cardNumber" name="cardNumber" type="text" class="w-full h-8 bg-gray-200 rounded-sm" required />
+        <label for="card-number">Card Number <span class="text-red-600">*</span></label>
+        <input id="card-number" name="card-number" type="text" value="{{ $paymentInfo->card_number }}"
+        class="w-full h-8 bg-gray-200 rounded-sm" required />
       </div>
       <div
         class="p-2 row-span-1 col-span-1 row-start-18 col-start-1 md:row-span-1 md:col-span-1 md:row-start-10 md:col-start-1 flex items-center">
@@ -149,50 +164,20 @@
       </div>
       <!-- SCROLL CONTAINER -->
       <div class="flex flex-col h-120 w-full gap-4 overflow-scroll">
+      @foreach ($products as $product)
       <div class="w-full flex items-center gap-4">
-        <img src="/images/guitars/guitar_placeholder.webp" alt="guitarPlaceholder" class="w-40 h-40" />
-        <div class="flex flex-col gap-2">
-        <p class="text-lg font-bold">Product Name</p>
-        <article class="text-md font-light">
-          <span>Qty: </span>
-          <span>1x</span>
-          <span class="font-bold text-primary">750 €</span>
-        </article>
-        </div>
+      <img src="/images/guitar/guitar_placeholder.webp" alt="guitarPlaceholder" class="w-40 h-40" />
+      <div class="flex flex-col gap-2">
+      <p class="text-lg font-bold">{{ $product->product->product_visible_name }}</p>
+      <article class="text-md font-light">
+        <span>Qty: </span>
+        <span>{{ $product->quantity }} x</span>
+        <span class="font-bold text-primary">{{ $product->product->product_price }} €</span>
+      </article>
       </div>
-      <div class="w-full flex items-center gap-4">
-        <img src="/images/guitars/lava.webp" alt="guitarPlaceholder" class="w-40 h-40" />
-        <div class="flex flex-col gap-2">
-        <p class="text-lg font-bold">Product Name</p>
-        <article class="text-md font-light">
-          <span>Qty: </span>
-          <span>1x</span>
-          <span class="font-bold text-primary">1000 €</span>
-        </article>
-        </div>
       </div>
-      <div class="w-full flex items-center gap-4">
-        <img src="/images/basses/bassPlaceholder.webp" alt="guitarPlaceholder" class="w-40 h-40" />
-        <div class="flex flex-col gap-2">
-        <p class="text-lg font-bold">Product Name</p>
-        <article class="text-md font-light">
-          <span>Qty: </span>
-          <span>1x</span>
-          <span class="font-bold text-primary">300 €</span>
-        </article>
-        </div>
-      </div>
-      <div class="w-full flex items-center gap-4">
-        <img src="/images/amps/ampPlaceholder.webp" alt="guitarPlaceholder" class="w-40 h-40" />
-        <div class="flex flex-col gap-2">
-        <p class="text-lg font-bold">Product Name</p>
-        <article class="text-md font-light">
-          <span>Qty: </span>
-          <span>2x</span>
-          <span class="font-bold text-primary">250 €</span>
-        </article>
-        </div>
-      </div>
+    @endforeach
+
       </div>
 
       <!-- ORDER SUMMARY -->
@@ -201,7 +186,7 @@
         <tbody>
         <tr>
           <td class="w-2/3 md:w-3/4">Sub-total:</td>
-          <td class="w-1/3 md:w-1/4 text-primary">2550 €</td>
+          <td class="w-1/3 md:w-1/4 text-primary">{{ $totalPrice }} €</td>
         </tr>
         <tr>
           <td>Shipping:</td>
@@ -209,7 +194,10 @@
         </tr>
         <tr class="border-t-4 border-primary text-xl font-bold">
           <td>Total:</td>
-          <td class="text-primary">2580 €</td>
+          <td class="text-primary">
+          <input type="hidden" name="totalPrice" value="{{ $totalPrice + 30 }}" />
+          2580 €
+          </td>
         </tr>
         </tbody>
       </table>

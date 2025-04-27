@@ -13,10 +13,10 @@
         stroke-linejoin="round"></path>
       </g>
     </svg>
-    <p class="text-xl font-bold text-primary">Your order was placed successfully</p>
+    <p class="text-xl font-bold text-primary">Order {{ $order->id }} was placed successfully</p>
     <p class="text-lg">Your order will be delivered soon!</p>
     <div class="flex flex-col gap-4">
-      <a href="{{ route('orderPage') }}">
+      <a href="{{ route('order.show', ['id' => $order->id]) }}">
       <button class="bg-primary text-white h-10 w-60 px-10 rounded-md cursor-pointer">See Order</button>
       </a>
       <a href="{{ route('dashboard') }}">

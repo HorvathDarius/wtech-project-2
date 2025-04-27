@@ -66,7 +66,7 @@
       <div class="bg-outline rounded-md p-4 w-full max-w-md lg:w-full lg:max-w-md">
       <article class="grid gap-2 h-40 place-items-center font-bold text-center">
         <span class="text-primary text-3xl">Total: {{ $totalPrice }}€</span>
-        <a href="{{ route('checkout') }}">
+        <a href="{{ route('order.create') }}">
         <button class="bg-primary text-white h-10 w-44 rounded-md cursor-pointer">To Checkout</button>
         </a>
       </article>
