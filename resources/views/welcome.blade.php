@@ -5,8 +5,8 @@
     <!-- Banner section -->
     <div class="relative h-150 overflow-hidden py-8">
     <picture class="w-full h-full block">
-      <source media="(min-width: 768px)" srcset="\images\guitars\badass_guitar.png" />
-      <img src="\images\guitars\promotion_vertical.png" alt="Guitar" class="w-full h-full object-cover" />
+      <source media="(min-width: 768px)" srcset="\images\guitar\badass_guitar.png" />
+      <img src="\images\guitar\promotion_vertical.png" alt="Guitar" class="w-full h-full object-cover" />
     </picture>
 
     <!-- Content over banner -->
@@ -33,7 +33,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\guitar\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4 col-span-1">
       <h3 class="font-bold text-l">Product name</h3>
@@ -47,7 +47,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\guitar\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4 col-span-1">
       <h3 class="font-bold text-l">Product name</h3>
@@ -61,7 +61,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\guitar\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4 col-span-1">
       <h3 class="font-bold text-l">Product name</h3>
@@ -75,7 +75,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\guitar\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4 col-span-1">
       <h3 class="font-bold text-l">Product name</h3>
@@ -89,7 +89,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="hidden 2xl:block border rounded shadow overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\guitar\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4 col-span-1">
       <h3 class="font-bold text-l">Product name</h3>
@@ -103,7 +103,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="hidden 2xl:block border rounded shadow overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\guitar\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4 col-span-1">
       <h3 class="font-bold text-l">Product name</h3>
@@ -134,7 +134,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="block border rounded shadow overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\guitar\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4 col-span-1">
       <h3 class="font-bold text-l">Product name</h3>
@@ -148,7 +148,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="block border rounded shadow overflow-hidden w-60 col-span-1 cursor-pointer">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\guitar\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4 col-span-1">
       <h3 class="font-bold text-l">Product name</h3>
@@ -162,7 +162,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="hidden md:block border rounded shadow overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\guitar\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4 col-span-1">
       <h3 class="font-bold text-l">Product name</h3>
@@ -176,7 +176,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="hidden lg:block border rounded shadow overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\guitar\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4 col-span-1">
       <h3 class="font-bold text-l">Product name</h3>
@@ -190,7 +190,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="hidden 2xl:block border rounded shadow overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\guitar\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4 col-span-1">
       <h3 class="font-bold text-l">Product name</h3>
@@ -204,7 +204,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="hidden 2xl:block border rounded shadow overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\guitar\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4 col-span-1">
       <h3 class="font-bold text-l">Product name</h3>

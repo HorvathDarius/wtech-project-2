@@ -8,89 +8,51 @@
 
     <!-- Table of products -->
     <div class="lg:col-span-1 col-span-1 w-full">
-    <div class="overflow-x-auto">
+    <div class="overflow-scroll h-100">
       <table class="w-full table-auto border-collapse">
       <tbody>
+
         <!-- Product in the basket -->
-        <tr class="h-28">
-        <td class="p-1">
-          <div class="grid grid-cols-[1fr_4fr_1fr] border rounded shadow overflow-hidden w-full h-28">
-          <div class="col-start-1 row-span-3 col-span-1 relative w-28 h-28">
-            <img src="\images\amps\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
-          </div>
-          <div class="p-4 col-start-2 col-span-1">
-            <h3 class="font-bold text-l">amp placeholder</h3>
-            <p class="text-sm">Pitch black</p>
-            <p class="text-sm font-bold text-green-700">Available</p>
-            <button class="">🗑️</button>
-          </div>
-          <div class="gap-1 text-center justify-around content-around bg-center">
-            <input type="number" value="1" min="1" max="100" step="1" class="border rounded p-1 mx-auto" />
-            <p class="font-bold text-3xl text-primary">600€</p>
-          </div>
-          </div>
-        </td>
-        </tr>
-        <!-- Product in the basket -->
-        <tr class="h-28">
-        <td class="p-1">
-          <div class="grid grid-cols-[1fr_4fr_1fr] border rounded shadow overflow-hidden w-full h-28">
-          <div class="col-start-1 row-span-3 col-span-1 relative w-28 h-28">
-            <img src="\images\basses\bassPlaceholder.webp" alt="thumb1" class="object-cover" />
-          </div>
-          <div class="p-4 col-start-2 col-span-1">
-            <h3 class="font-bold text-l">bass placeholder</h3>
-            <p class="text-sm">Pitch black</p>
-            <p class="text-sm font-bold text-green-700">Available</p>
-            <button class="">🗑️</button>
-          </div>
-          <div class="gap-1 text-center justify-around content-around bg-center">
-            <input type="number" value="1" min="1" max="100" step="1" class="border rounded p-1 mx-auto" />
-            <p class="font-bold text-3xl text-primary">450€</p>
-          </div>
-          </div>
-        </td>
-        </tr>
-        <!-- Product in the basket -->
-        <tr class="h-28">
-        <td class="p-1">
-          <div class="grid grid-cols-[1fr_4fr_1fr] border rounded shadow overflow-hidden w-full h-28">
-          <div class="col-start-1 row-span-3 col-span-1 relative w-28 h-28">
-            <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-          </div>
-          <div class="p-4 col-start-2 col-span-1">
-            <h3 class="font-bold text-l">guitar placeholder</h3>
-            <p class="text-sm">Crimson red</p>
-            <p class="text-sm font-bold text-green-700">Available</p>
-            <button class="">🗑️</button>
-          </div>
-          <div class="gap-1 text-center justify-around content-around bg-center">
-            <input type="number" value="1" min="1" max="100" step="1" class="border rounded p-1 mx-auto" />
-            <p class="font-bold text-3xl text-primary">786€</p>
-          </div>
-          </div>
-        </td>
-        </tr>
-        <!-- Product in the basket -->
-        <tr class="h-28">
-        <td class="p-1">
-          <div class="grid grid-cols-[1fr_4fr_1fr] border rounded shadow overflow-hidden w-full h-28">
-          <div class="col-start-1 row-span-3 col-span-1 relative w-28 h-28">
-            <img src="\images\guitars\lava.webp" alt="thumb1" class="object-cover" />
-          </div>
-          <div class="p-4 col-start-2 col-span-1">
-            <h3 class="font-bold text-l">Lava guitar</h3>
-            <p class="text-sm">Crimson red</p>
-            <p class="text-sm font-bold text-green-700">Available</p>
-            <button class="">🗑️</button>
-          </div>
-          <div class="gap-1 text-center justify-around content-around bg-center">
-            <input type="number" value="1" min="1" max="100" step="1" class="border rounded p-1 mx-auto" />
-            <p class="font-bold text-3xl text-primary">1000€</p>
-          </div>
-          </div>
-        </td>
-        </tr>
+        @foreach ($products as $product)
+      <tr class="h-28">
+      <td class="p-1">
+        <div class="grid grid-cols-[1fr_4fr_1fr] border rounded shadow overflow-hidden w-full h-28">
+        <div class="col-start-1 row-span-3 col-span-1 relative w-28 h-28">
+        <img
+        src="{{ '\images\\' . $product->product->product_category . '\\' . $product->product->product_image}}"
+        alt="thumb1" class="object-cover" />
+        </div>
+        <div class="p-4 col-start-2 col-span-1">
+        <div class="flex gap-2">
+        <h3 class="font-bold text-l">{{ $product->product->product_visible_name}}</h3>
+        <span> - </span>
+        <p class="text-primary font-bold">{{ $product->product->product_category}}</p>
+        </div>
+        @if ($product->product->product_color == 'red')
+      <p class="text-sm">Crimson Red</p>
+    @elseif ($product->product->product_color == 'blue')
+    <p class="text-sm">Blueish Blue</p>
+  @else
+  <p class="text-sm">Pitch black</p>
+@endif
+        <p class="text-sm font-bold text-green-700">Available</p>
+        <form action="{{ route('cart.removeItem', $product->id) }}" method="POST">
+        @csrf
+        <input type="text" value="{{ $product->id}}" name="cart_product_id" />
+        <input type="hidden" name="_method" value="DELETE">
+        <button class="cursor-pointer" type="submit">🗑️</button>
+        </form>
+        </div>
+        <div class="gap-1 text-center justify-around content-around bg-center">
+        <input type="number" value="{{ $product->quantity }}" min="1" max="100" step="1"
+        class="border rounded p-1 mx-auto" />
+        <p class="font-bold text-3xl text-primary">{{ $product->product->product_price}} €</p>
+        </div>
+        </div>
+      </td>
+      </tr>
+    @endforeach
+
       </tbody>
       </table>
     </div>
@@ -103,8 +65,8 @@
       <!-- Order total -->
       <div class="bg-outline rounded-md p-4 w-full max-w-md lg:w-full lg:max-w-md">
       <article class="grid gap-2 h-40 place-items-center font-bold text-center">
-        <span class="text-primary text-3xl">Total: 2836€</span>
-        <a href="{{ route('checkout') }}">
+        <span class="text-primary text-3xl">Total: {{ $totalPrice }}€</span>
+        <a href="{{ route('order.create') }}">
         <button class="bg-primary text-white h-10 w-44 rounded-md cursor-pointer">To Checkout</button>
         </a>
       </article>
@@ -143,98 +105,32 @@
   <div
     class="container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-y-10 place-items-center">
     <!-- Single Product Card -->
+    @foreach ($recommendedProducts as $product)
+
     <div class="block border rounded shadow overflow-hidden w-60 col-span-1">
     <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\guitar\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
     </div>
     <div class="p-4 col-span-1">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
+      <h3 class="font-bold text-l">{{ $product->product_visible_name}}</h3>
+      <p class="text-sm">{{ $product->product_price}}€</p>
       <p class="text-sm text-gray-600">3 colors</p>
       <div class="flex justify-end mt-2">
       <button class="text-xl">🛒</button>
       </div>
     </div>
     </div>
-    <!-- Single Product Card -->
-    <div class="hidden sm:block border rounded shadow overflow-hidden w-60 col-span-1">
-    <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-    </div>
-    <div class="p-4 col-span-1">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-      <button class="text-xl">🛒</button>
-      </div>
-    </div>
-    </div>
-    <!-- Single Product Card -->
-    <div class="hidden md:block border rounded shadow overflow-hidden w-60 col-span-1">
-    <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-    </div>
-    <div class="p-4 col-span-1">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-      <button class="text-xl">🛒</button>
-      </div>
-    </div>
-    </div>
-    <!-- Single Product Card -->
-    <div class="hidden lg:block border rounded shadow overflow-hidden w-60 col-span-1">
-    <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-    </div>
-    <div class="p-4 col-span-1">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-      <button class="text-xl">🛒</button>
-      </div>
-    </div>
-    </div>
-    <!-- Single Product Card -->
-    <div class="hidden 2xl:block border rounded shadow overflow-hidden w-60 col-span-1">
-    <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-    </div>
-    <div class="p-4 col-span-1">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-      <button class="text-xl">🛒</button>
-      </div>
-    </div>
-    </div>
-    <!-- Single Product Card -->
-    <div class="hidden 2xl:block border rounded shadow overflow-hidden w-60 col-span-1">
-    <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
-    </div>
-    <div class="p-4 col-span-1">
-      <h3 class="font-bold text-l">Product name</h3>
-      <p class="text-sm">599 €</p>
-      <p class="text-sm text-gray-600">3 colors</p>
-      <div class="flex justify-end mt-2">
-      <button class="text-xl">🛒</button>
-      </div>
-    </div>
-    </div>
+  @endforeach
+  </div>
 
-    <!-- View All button -->
-    <div class="col-span-full flex justify-center mb-4">
+  <!-- View All button -->
+  <div class="col-span-full flex justify-center mb-4">
     <a href="{{ route('productsGuitars') }}">
-      <button
+    <button
       class="bg-primary hover:bg-red-600 text-white text-sm md:text-lg md:px-6 px-4 py-2 rounded-md cursor-pointer">
       View All
-      </button>
+    </button>
     </a>
-    </div>
+  </div>
   </div>
 @endsection

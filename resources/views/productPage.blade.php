@@ -5,22 +5,22 @@
         <div class="grid grid-cols-5 grid-rows-4 mb-5 gap-2">
             <!-- Thumbnails -->
             <div class="lg:w-32 lg:h-32 md:w-20 md:h-20  sm:w-24 sm:h-full  w-full h-full col-start-1 row-start-1">
-                <img src="\images\guitars\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
+                <img src="\images\guitar\guitar_placeholder.webp" alt="thumb1" class="object-cover" />
             </div>
             <div class="lg:w-32 lg:h-32 md:w-20 md:h-20 sm:w-24 sm:h-full w-full h-full col-start-1 row-start-2">
-                <img src="\images\guitars\guitar_placeholder.webp" alt="thumb2" class="object-cover" />
+                <img src="\images\guitar\guitar_placeholder.webp" alt="thumb2" class="object-cover" />
             </div>
             <div class="lg:w-32 lg:h-32 md:w-20 md:h-20 sm:w-24 sm:h-full h-full col-start-1 row-start-3">
-                <img src="\images\guitars\guitar_placeholder.webp" alt="thumb3" class="object-cover" />
+                <img src="\images\guitar\guitar_placeholder.webp" alt="thumb3" class="object-cover" />
             </div>
             <div class="lg:w-32 lg:h-32 md:w-20 md:h-20 sm:w-24 sm:h-full h-full col-start-1 row-start-4">
-                <img src="\images\guitars\guitar_placeholder.webp" alt="thumb4" class="object-cover" />
+                <img src="\images\guitar\guitar_placeholder.webp" alt="thumb4" class="object-cover" />
             </div>
 
             <!-- Main image -->
             <div
                 class="md:rows-span-4 md:col-span-5 row-span-4 col-span-5 col-start-2 row-start-1 bg-gray-300 max-w-120 max-h-full lg:max-w-150 lg:max-h-150 border border-gray-400">
-                <img src="\images\guitars\guitar_placeholder.webp" alt="main" class="w-full h-full object-cover" />
+                <img src="\images\guitar\guitar_placeholder.webp" alt="main" class="w-full h-full object-cover" />
             </div>
         </div>
 
@@ -61,18 +61,22 @@
                 @if ($products->quantity > 0)
                     <p class="text-sm text-green-600">{{ $products->quantity }} on stock</p>
                 @else
-                    <p class="text-sm text-red-600">out of stock</p>
+                    <p class="text-sm text-red-600">Out of stock</p>
                 @endif
                 <p class="text-primary font-bold text-xl">{{ $products->product_price }} €</p>
             </div>
 
             <!-- Quantity & Button -->
             <div class="flex items-center space-x-4">
-                <input type="number" value="1" min="1" max="100" step="1"
-                    class="border rounded p-1" />
-                <a href="{{ route('cart') }}">
-                    <button class="bg-primary hover:bg-primary text-white px-4 py-2 rounded">Add to Cart</button>
-                </a>
+                <form action="{{ route('cart.store') }}" method="POST">
+                    @csrf
+                    <input type='hidden' name="product_id" value="{{ $products->id }}">
+                    <input type="number" value="1" min="1" max="{{ $products->quantity }}" step="1" name="quantity"
+                        class="border rounded p-1" />
+
+                    <button class="bg-primary hover:bg-primary text-white px-4 py-2 rounded cursor-pointer"
+                        type="submit">Add to Cart</button>
+                </form>
             </div>
         </div>
 

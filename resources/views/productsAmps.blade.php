@@ -3,7 +3,7 @@
   <main class="pb-14">
     <!-- Banner section -->
     <div class="relative h-50 overflow-hidden">
-    <img src="\images\amps\ampPlaceholder.webp" alt="Guitar Banner" class="w-full h-full object-cover filter blur-sm" />
+    <img src="\images\amp\ampPlaceholder.webp" alt="Guitar Banner" class="w-full h-full object-cover filter blur-sm" />
 
     <!-- Content over banner -->
     <div class="absolute inset-0 flex items-center justify-center z-10">
@@ -95,7 +95,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="border rounded overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\amps\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\amp\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4">
       <h3 class="font-bold text-l">Product name</h3>
@@ -110,7 +110,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="border rounded overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\amps\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\amp\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4">
       <h3 class="font-bold text-l">Product name</h3>
@@ -125,7 +125,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="border rounded overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\amps\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\amp\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4">
       <h3 class="font-bold text-l">Product name</h3>
@@ -140,7 +140,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="border rounded overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\amps\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\amp\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4">
       <h3 class="font-bold text-l">Product name</h3>
@@ -155,7 +155,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="border rounded overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\amps\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\amp\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4">
       <h3 class="font-bold text-l">Product name</h3>
@@ -170,7 +170,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="border rounded overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\amps\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\amp\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4">
       <h3 class="font-bold text-l">Product name</h3>
@@ -185,7 +185,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="border rounded overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\amps\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\amp\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4">
       <h3 class="font-bold text-l">Product name</h3>
@@ -200,7 +200,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="border rounded overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\amps\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\amp\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4">
       <h3 class="font-bold text-l">Product name</h3>
@@ -215,7 +215,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="border rounded overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\amps\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\amp\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4">
       <h3 class="font-bold text-lg">Product name</h3>
@@ -230,7 +230,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="border rounded overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\amps\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\amp\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4">
       <h3 class="font-bold text-lg">Product name</h3>
@@ -245,7 +245,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="border rounded overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\amps\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\amp\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4">
       <h3 class="font-bold text-lg">Product name</h3>
@@ -260,7 +260,7 @@
     <!-- Single Product Card -->
     <a href="product_page.html" class="border rounded overflow-hidden w-60 col-span-1">
       <div class="relative h-64 flex items-center justify-center">
-      <img src="\images\amps\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
+      <img src="\images\amp\ampPlaceholder.webp" alt="thumb1" class="object-cover" />
       </div>
       <div class="p-4">
       <h3 class="font-bold text-l">Product name</h3>
