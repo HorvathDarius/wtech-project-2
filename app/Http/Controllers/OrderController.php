@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Models\PaymentInformation;
 use App\Models\ShoppingCart;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -31,8 +33,6 @@ class OrderController extends Controller
     {
         $user = auth()->user();
 
-        // dd($user->name);
-
         $shoppingCart = ShoppingCart::query()
             ->with(['products'])
             ->where('user_id', auth()->id())
@@ -43,6 +43,10 @@ class OrderController extends Controller
         }
 
         $paymentInformation = $user->paymentInformation;
+
+        if ($paymentInformation == null) {
+            $paymentInformation = new PaymentInformation();
+        }
 
         $totalPrice = 0;
         foreach ($shoppingCart->products as $products) {
@@ -63,8 +67,10 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
+        // Get user
         $user = auth()->user();
 
+        // Create order
         $order = Order::create([
             'user_id' => $user->id,
             'order_status' => 'preparing',
@@ -77,17 +83,53 @@ class OrderController extends Controller
             'shipping_method' => $request->delivery,
         ]);
 
+        // If user has no payment information, create it based on order info
+        $paymentId = 0;
+        if ($user->paymentInformation == null) {
+            $paymentCreated = PaymentInformation::create(
+                [
+                    'user_id' => $user->id,
+                    'card_number' => $request->card_number,
+                    'name_on_card' => $request->name_on_card,
+                ]
+
+            );
+            $paymentId = $paymentCreated->id;
+        }
+
+        // If user has no address, update with data from order them
+        if ($user->address == null) {
+            $user = User::find($user->id);
+            $user->address = $request->address;
+            $user->country = $request->country;
+            $user->region = $request->region;
+            $user->city = $request->city;
+            $user->zip_code = $request->zip_code;
+            $user->phone_number = $request->phone_number;
+            if ($paymentId != 0) {
+                $user->payment_information = $paymentId;
+            }
+            $user->save();
+        }
+
+        // Get order items
         $shoppingCart = ShoppingCart::query()
             ->with(['products'])
             ->where('user_id', auth()->id())
             ->first();
 
+        // Create Order items    
         foreach ($shoppingCart->products as $product) {
             OrderProduct::create([
                 'order_id' => $order->id,
                 'product_id' => $product->product_id,
                 'quantity' => $product->quantity,
             ]);
+        }
+
+        // Delete all products in shopping cart
+        foreach ($shoppingCart->products as $product) {
+            $product->delete();
         }
 
         return view('orderSuccess', [
