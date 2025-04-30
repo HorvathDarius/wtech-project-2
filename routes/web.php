@@ -14,21 +14,10 @@ Route::get('/', function () {
     return view('landingPage');
 })->name('dashboard');
 
-Route::get('/edit', function () {
-    return view('editProduct');
-})->name('editProduct');
-
 Route::get('/success', function () {
     return view('orderSuccess');
 })->name('orderSuccess');
 
-Route::get('/add', function () {
-    return view('addProduct');
-})->name('addProduct');
-
-Route::get('/admin', function () {
-    return view('adminPage');
-})->name('adminPage')->middleware(['auth']);
 
 Route::get('/empty', function () {
     return view('cartFallback');
@@ -75,3 +64,19 @@ Route::get('/checkout', [OrderController::class, 'create'])->name('order.create'
 Route::get('/order/{id}', [OrderController::class, 'show'])->name('order.show');
 Route::post('/order', [OrderController::class, 'store'])->name('order.store');
 Route::put('/order/{id}', [OrderController::class, 'update'])->name('order.update');
+
+// Admin routes
+Route::get('/add', function () {
+    return view('addProduct');
+})->name('addProduct');
+Route::post('/add', [ProductController::class, 'store'])
+    ->name('addProductStore')
+    ->middleware(['auth']);
+
+Route::get('/admin', [ProductController::class, 'index'])
+    ->name('adminPage')
+    ->middleware(['auth']);
+
+Route::get('/edit/{id}', [ProductController::class, 'showProductAdmin'])
+    ->name('editProduct')
+    ->middleware(['auth']);

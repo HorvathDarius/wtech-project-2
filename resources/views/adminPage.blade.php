@@ -17,133 +17,58 @@
     <div class="center border border-outline rounded-md sm:m-4 relative">
       <div class="bg-primary w-full h-10 rounded-t-md flex justify-center items-center text-white font-bold"></div>
       <div>
-      <!-- PRODUCT DETAILS -->
-      <div
-        class="w-full h-100 sm:h-40 border border-outline flex flex-col sm:flex-row justify-between items-center p-8 md:p-4 lg:p-8">
-        <div class="flex gap-4 sm:gap-10 lg:gap-20 items-center">
-        <img src="/images/guitars/guitar_placeholder.webp" alt="guitarPlaceholder" class="w-30 h-30 border" />
-        <div class="text-lg">
-          <p class="text-xl font-bold">Product Name</p>
-          <p>
-          Category:
-          <span>Guitar</span>
-          </p>
-          <p>
-          Price:
-          <span class="font-bold text-primary px-2 sm:px-8">600 €</span>
-          </p>
-        </div>
-        </div>
+      @foreach ($products as $product)
 
-        <p class="sm:w-80 md:w-40 md:h-30 lg:w-80">
-        The guitar is a fretted, stringed musical instrument typically made of wood, with six strings
-        stretched over a flat or slightly curved body...
-        </p>
-
-        <div class="flex flex-col gap-4">
-        <a href="{{ route('editProduct') }}">
-          <button class="bg-primary text-white h-10 w-48 px-10 rounded-md cursor-pointer">
-          Edit Product
-          </button>
-        </a>
-        <button class="text-primary border border-primary h-10 w-48 px-10 rounded-md cursor-pointer">
-          Delete Product
-        </button>
-        </div>
-      </div>
 
       <!-- PRODUCT DETAILS -->
       <div
-        class="w-full h-100 sm:h-40 border border-outline flex flex-col sm:flex-row justify-between items-center p-8">
-        <div class="flex gap-4 sm:gap-10 lg:gap-20 items-center">
-        <img src="/images/basses/bassPlaceholder.webp" alt="bassPlaceholder" class="w-30 h-30 border" />
-        <div class="text-lg">
-          <p class="text-xl font-bold">Product Name</p>
-          <p>
-          Category:
-          <span>Guitar</span>
-          </p>
-          <p>
-          Price:
-          <span class="font-bold text-primary px-2 sm:px-8">600 €</span>
-          </p>
-        </div>
-        </div>
-        <p class="sm:w-80 md:w-40 md:h-30 lg:w-80">
-        The guitar is a fretted, stringed musical instrument typically made of wood, with six strings
-        stretched over a flat or slightly curved body...
+      class="w-full h-100 sm:h-40 border border-outline flex flex-col sm:flex-row justify-between items-center p-8 md:p-4 lg:p-8">
+      <div class="flex gap-4 sm:gap-10 lg:gap-20 items-center object-cover">
+      <img src="{{ '/images/' . $product->product_category . '/' . $product->product_image }}"
+        alt="guitarPlaceholder" class="w-30 h-30 border" />
+      <div class="text-lg">
+        <p class="text-xl font-bold">{{ $product->product_visible_name}}</p>
+        <p>
+        Category:
+        <span>{{ $product->product_category }}</span>
         </p>
-        <div class="flex flex-col gap-4">
-        <a href="{{ route('editProduct') }}">
-          <button class="bg-primary text-white h-10 w-48 px-10 rounded-md cursor-pointer">
-          Edit Product
-          </button>
-        </a>
-        <button class="text-primary border border-primary h-10 w-48 px-10 rounded-md cursor-pointer">
-          Delete Product
-        </button>
-        </div>
-      </div>
-
-      <!-- PRODUCT DETAILS -->
-      <div
-        class="w-full h-100 sm:h-40 border border-outline flex flex-col sm:flex-row justify-between items-center p-8">
-        <div class="flex gap-4 sm:gap-10 lg:gap-20 items-center">
-        <img src="/images/amps/ampPlaceholder.webp" alt="ampPlaceholder" class="w-30 h-30 border" />
-        <div class="text-lg">
-          <p class="text-xl font-bold">Product Name</p>
-          <p>
-          Category:
-          <span>Guitar</span>
-          </p>
-          <p>
-          Price:
-          <span class="font-bold text-primary px-2 sm:px-8">600 €</span>
-          </p>
-        </div>
-        </div>
-        <p class="sm:w-80 md:w-40 md:h-30 lg:w-80">
-        The guitar is a fretted, stringed musical instrument typically made of wood, with six strings
-        stretched over a flat or slightly curved body...
+        <p>
+        Price:
+        <span class="font-bold text-primary px-2 sm:px-8">{{ $product->product_price }} €</span>
         </p>
-        <div class="flex flex-col gap-4">
-        <a href="{{ route('editProduct') }}">
-          <button class="bg-primary text-white h-10 w-48 px-10 rounded-md cursor-pointer">
-          Edit Product
-          </button>
-        </a>
-        <button class="text-primary border border-primary h-10 w-48 px-10 rounded-md cursor-pointer">
-          Delete Product
+      </div>
+      </div>
+      <p class="sm:w-80 md:w-40 md:h-30 lg:w-80">
+      {{ $product->product_description }}
+      </p>
+      <div class="flex flex-col gap-4">
+      <a href="{{ route('editProduct', $product->id) }}">
+        <button class="bg-primary text-white h-10 w-48 px-10 rounded-md cursor-pointer">
+        Edit Product
         </button>
-        </div>
+      </a>
+      <button class="text-primary border border-primary h-10 w-48 px-10 rounded-md cursor-pointer">
+        Delete Product
+      </button>
       </div>
       </div>
-
-
+    @endforeach
 
       <!-- PAGINATOR -->
       <div class="w-full h-14 flex justify-between items-center p-2">
-      <form action="{{ route('logout') }}" method="POST">
+        <form action="{{ route('logout') }}" method="POST">
         @csrf
         <button class="bg-primary text-white h-10 w-40 rounded-md cursor-pointer" type="submit">
-        Log out
+          Log out
         </button>
-      </form>
+        </form>
 
-      <nav class="w-full h-full">
-        <ul class="w-full h-full flex gap-2 items-center justify-center lg:justify-end px-10 font-bold">
-        <li>
-          < </li>
-        <li class="flex text-white bg-primary w-6 h-8 justify-center items-center rounded-lg">1</li>
-        <li class="flex w-6 h-8 justify-center items-center rounded-lg">2</li>
-        <li class="flex w-6 h-8 justify-center items-center rounded-lg">3</li>
-        <li class="flex w-6 h-8 justify-center items-center rounded-lg">4</li>
-        <li class="flex w-6 h-8 justify-center items-center rounded-lg">5</li>
-        <li>></li>
-        </ul>
-      </nav>
+        <div
+        class="w-full h-full flex gap-2 relative left-100 bottom-4 items-center justify-center lg:justify-end px-10 font-bold">
+        {{ $products->links() }}
+        </div>
+      </div>
       </div>
     </div>
     </div>
-  </div>
-@endsection
+  @endsection
