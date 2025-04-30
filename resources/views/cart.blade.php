@@ -125,7 +125,7 @@
 
   <!-- View All button -->
   <div class="col-span-full flex justify-center mb-4">
-    <a href="{{ route('productsGuitars') }}">
+    <a href="{{ route('') }}">
     <button
       class="bg-primary hover:bg-red-600 text-white text-sm md:text-lg md:px-6 px-4 py-2 rounded-md cursor-pointer">
       View All

@@ -85,38 +85,107 @@ class DatabaseSeeder extends Seeder
 
         $categories = ['guitar', 'bass', 'amp'];
         $colors = ['red', 'blue', 'black'];
-
+        // Create guitars
+        for ($i = 0; $i < 6; $i++) {
+            $name = Str::random(5);
+            Product::create([
+                'product_visible_name' => $name,
+                'product_link_name' => $name . '-' . $colors[0],
+                'product_price' => rand(100, 1000),
+                'product_category' => $categories[0],
+                'product_color' => $colors[0],
+                'quantity' => rand(1, 50),
+                'product_description' => 'This is a great instrument.',
+                'product_image' => $i.'_'.$colors[0].'.png',
+            ]);
+            Product::create([
+                'product_visible_name' => $name,
+                'product_link_name' => $name . '-' . $colors[1],
+                'product_price' => rand(100, 1000),
+                'product_category' => $categories[0],
+                'product_color' => $colors[1],
+                'quantity' => rand(1, 50),
+                'product_description' => 'This is a great instrument.',
+                'product_image' => $i.'_'.$colors[1].'.png',
+            ]);
+            Product::create([
+                'product_visible_name' => $name,
+                'product_link_name' => $name . '-' . $colors[2],
+                'product_price' => rand(100, 1000),
+                'product_category' => $categories[0],
+                'product_color' => $colors[2],
+                'quantity' => rand(1, 50),
+                'product_description' => 'This is a great instrument.',
+                'product_image' => $i.'_'.$colors[2].'.png',
+            ]);
+        }
+        // Create basses
         for ($i = 0; $i < 50; $i++) {
             $name = Str::random(5);
             Product::create([
                 'product_visible_name' => $name,
                 'product_link_name' => $name . '-' . $colors[0],
                 'product_price' => rand(100, 1000),
-                'product_category' => $categories[array_rand($categories)],
+                'product_category' => $categories[1],
                 'product_color' => $colors[0],
                 'quantity' => rand(1, 50),
                 'product_description' => 'This is a great instrument.',
-                'product_image' => 'guitar_placeholder.webp',
+                'product_image' => 'bass_placeholder.webp',
             ]);
             Product::create([
                 'product_visible_name' => $name,
                 'product_link_name' => $name . '-' . $colors[1],
                 'product_price' => rand(100, 1000),
-                'product_category' => $categories[array_rand($categories)],
+                'product_category' => $categories[1],
                 'product_color' => $colors[1],
                 'quantity' => rand(1, 50),
                 'product_description' => 'This is a great instrument.',
-                'product_image' => 'guitar_placeholder.webp',
+                'product_image' => 'bass_placeholder.webp',
             ]);
             Product::create([
                 'product_visible_name' => $name,
                 'product_link_name' => $name . '-' . $colors[2],
                 'product_price' => rand(100, 1000),
-                'product_category' => $categories[array_rand($categories)],
+                'product_category' => $categories[1],
                 'product_color' => $colors[1],
                 'quantity' => rand(1, 50),
                 'product_description' => 'This is a great instrument.',
-                'product_image' => 'guitar_placeholder.webp',
+                'product_image' => 'bass_placeholder.webp',
+            ]);
+        }
+
+        // Create basses
+        for ($i = 0; $i < 50; $i++) {
+            $name = Str::random(5);
+            Product::create([
+                'product_visible_name' => $name,
+                'product_link_name' => $name . '-' . $colors[0],
+                'product_price' => rand(100, 1000),
+                'product_category' => $categories[2],
+                'product_color' => $colors[0],
+                'quantity' => rand(1, 50),
+                'product_description' => 'This is a great instrument.',
+                'product_image' => 'amp_placeholder.webp',
+            ]);
+            Product::create([
+                'product_visible_name' => $name,
+                'product_link_name' => $name . '-' . $colors[1],
+                'product_price' => rand(100, 1000),
+                'product_category' => $categories[2],
+                'product_color' => $colors[1],
+                'quantity' => rand(1, 50),
+                'product_description' => 'This is a great instrument.',
+                'product_image' => 'amp_placeholder.webp',
+            ]);
+            Product::create([
+                'product_visible_name' => $name,
+                'product_link_name' => $name . '-' . $colors[2],
+                'product_price' => rand(100, 1000),
+                'product_category' => $categories[2],
+                'product_color' => $colors[1],
+                'quantity' => rand(1, 50),
+                'product_description' => 'This is a great instrument.',
+                'product_image' => 'amp_placeholder.webp',
             ]);
         }
 

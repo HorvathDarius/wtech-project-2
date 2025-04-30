@@ -1,10 +1,10 @@
+@vite('resources/js/app.js')
 @extends('layout.app')
 @section('content')
     <main class="pb-14">
         <!-- Banner section -->
         <div class="relative h-50 overflow-hidden">
-            <img src="\images\guitar\guitar_placeholder.webp" alt="Guitar Banner"
-                class="w-full h-full object-cover filter blur-sm" />
+            <img src="\images\guitar\1_red.png" alt="Guitar Banner" class="w-full h-full object-cover filter blur-sm" />
 
             <!-- Content over banner -->
             <div class="absolute inset-0 flex items-center justify-center z-10">
@@ -15,7 +15,8 @@
         <!-- Search bar -->
         <div class="container mx-auto px-25 py-4">
             <input type="text" placeholder="🔍Search..."
-                class="bg-gray-200 w-full p-2 border rounded shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                class="bg-gray-200 w-full p-2 border rounded shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-400"
+                onkeydown="search(event, this, '{{ route('products.search', ['category' => 'guitar']) }}')" />
         </div>
 
         <!-- Filters and Sort -->
@@ -90,7 +91,6 @@
                 </form>
             </div>
         </div>
-
         <!-- Product Grid -->
         <div
             class="container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-y-10 place-items-center">
