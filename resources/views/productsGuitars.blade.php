@@ -24,34 +24,46 @@
             <!-- Filters -->
             <div class="bg-white border rounded shadow">
                 <div class="bg-primary text-white px-4 py-2 rounded-t font-bold mb-4 text-center">Filters</div>
-                <form class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+                <form action="{{ route('products.filter', ['category' => 'guitar']) }}" method="post"
+                    class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+                    @csrf
                     <!-- Color -->
                     <div>
                         <h4 class="font-semibold mb-2">Color</h4>
                         <label class="flex items-center space-x-2">
-                            <input type="checkbox" checked class="accent-primary" />
+                            <input type="checkbox" id="hovno" name="colors[]" value="red"
+                                {{ in_array('red', $colors ?? []) ? 'checked' : '' }} class="accent-primary" />
                             <span>Crimson Red</span>
                         </label>
                         <label class="flex items-center space-x-2">
-                            <input type="checkbox" class="accent-primary" />
+                            <input type="checkbox" name="colors[]" value="blue"
+                                {{ in_array('blue', $colors ?? []) ? 'checked' : '' }} class="accent-primary" />
                             <span>Blueish Blue</span>
                         </label>
                         <label class="flex items-center space-x-2">
-                            <input type="checkbox" class="accent-primary" />
+                            <input type="checkbox" name="colors[]" value="black"
+                                {{ in_array('black', $colors ?? []) ? 'checked' : '' }} class="accent-primary" />
                             <span>Pitch Black</span>
                         </label>
                     </div>
 
-                    <!-- Type -->
+                    <!-- In stock -->
                     <div>
-                        <h4 class="font-semibold mb-2">Type</h4>
+                        <h4 class="font-semibold mb-2">Stock</h4>
                         <label class="flex items-center space-x-2">
-                            <input type="checkbox" class="accent-primary" />
-                            <span>Electric</span>
+                            <input type="radio" name="stock" value="in_stock"
+                                {{ ($stocks ?? '') === 'in_stock' ? 'checked' : '' }} class="accent-primary" />
+                            <span>In stock</span>
                         </label>
                         <label class="flex items-center space-x-2">
-                            <input type="checkbox" class="accent-primary" />
-                            <span>Acoustic</span>
+                            <input type="radio" name="stock" value="sold_out"
+                                {{ ($stocks ?? '') === 'sold_out' ? 'checked' : '' }} class="accent-primary" />
+                            <span>Sold out</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="stock" value="all"
+                                {{ ($stocks ?? '') === 'all' ? 'checked' : '' }} class="accent-primary" />
+                            <span>All</span>
                         </label>
                     </div>
 
@@ -59,19 +71,23 @@
                     <div>
                         <h4 class="font-semibold mb-2">Price</h4>
                         <label class="flex items-center space-x-2">
-                            <input type="checkbox" class="accent-primary" />
+                            <input type="checkbox" name="price_category[]" value="price_category_1"
+                                {{ in_array('price_category_1', $prices ?? []) ? 'checked' : '' }} class="accent-primary" />
                             <span>0€ - 250€</span>
                         </label>
                         <label class="flex items-center space-x-2">
-                            <input type="checkbox" class="accent-primary" />
+                            <input type="checkbox" name="price_category[]" value="price_category_2"
+                                {{ in_array('price_category_2', $prices ?? []) ? 'checked' : '' }} class="accent-primary" />
                             <span>250€ - 500€</span>
                         </label>
                         <label class="flex items-center space-x-2">
-                            <input type="checkbox" class="accent-primary" />
+                            <input type="checkbox" name="price_category[]" value="price_category_3"
+                                {{ in_array('price_category_3', $prices ?? []) ? 'checked' : '' }}
+                                class="accent-primary" />
                             <span>500€ +</span>
                         </label>
                     </div>
-                    <button class="bg-primary text-white px-4 py-2 rounded-md cursor-pointer sm:col-start-3">
+                    <button type="submit" class="bg-primary text-white px-4 py-2 rounded-md cursor-pointer sm:col-start-3">
                         Show Results
                     </button>
                 </form>

@@ -64,23 +64,68 @@ class ProductController extends Controller
     public function searchProduct($category, Request $searchRequest)
     {
         $search = $searchRequest->input('search');
+
         $results = Product::where('product_category', $category)
             ->where('product_visible_name', 'ilike', "%$search%")
             ->orderBy('created_at')
             ->paginate(10);
 
-        return view('productsGuitars', ['products' => $results]);
+        $viewName = match ($category) {
+            'guitar' => 'productsGuitars',
+            'bass' => 'productsBasses',
+            'amp' => 'productsAmps'
+        };
+
+        return view($viewName, ['products' => $results]);
     }
 
-    public function filterProduct($category, Request $searchRequest)
+    public function filterProduct(Request $filterRequest, $category)
     {
-        $colorFilter = $searchRequest->input('color');
-        $results = Product::where('product_category', $category)
-            ->where('product_color', 'like', colorFilter)
-            
-            ->orderBy('created_at')
-            ->paginate(10);
 
-        return view('productsGuitars', ['products' => $results]);
+        $colorFilter = $filterRequest->input('colors', []);
+        $stockFilter = $filterRequest->input('stock');
+        $priceCategory = $filterRequest->input('price_category', []);
+        $query = Product::where('product_category', $category);
+
+        if (empty(!$colorFilter))
+        {
+            $query->whereIn('product_color', $colorFilter);
+        }
+
+        if (empty(!$priceCategory))
+        {
+            $query->where(function ($q) use ($priceCategory) {
+                if (in_array('price_category_1', $priceCategory)) {
+                    $q->orWhereBetween('product_price', [0, 250]);
+                }
+                if (in_array('price_category_2', $priceCategory)) {
+                    $q->orWhereBetween('product_price', [250, 500]);
+                }
+                if (in_array('price_category_3', $priceCategory)) {
+                    $q->orWhere('product_price', '>', 500);
+                }
+            });
+        }
+
+        if ($stockFilter === 'in_stock') {
+            $query->where('quantity', '>', 0);
+        } elseif ($stockFilter === 'sold_out') {
+            $query->where('quantity', '=', 0);
+        }
+
+        $results = $query->orderBy('created_at')->paginate(10);
+
+        $viewName = match ($category) {
+            'guitar' => 'productsGuitars',
+            'bass' => 'productsBasses',
+            'amp' => 'productsAmps'
+        };
+
+        return view($viewName,
+        ['products' => $results,
+         'colors' => $colorFilter,
+        'stocks' => $stockFilter,
+        'prices' => $priceCategory
+        ]);
     }
 }

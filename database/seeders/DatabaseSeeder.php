@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            "id" => 1,
             'name' => 'Admin User',
             'email' => 'admin@admin.com',
             'password' => Hash::make('admin'),
@@ -35,7 +34,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'id' => 2,
             'name' => 'GuestUser',
             'email' => 'test@test.com',
             'password' => Hash::make('test'),
@@ -50,7 +48,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'id' => 3,
             'name' => 'GuestUser2',
             'email' => 'test2@test2.com',
             'password' => Hash::make('test'),
@@ -65,19 +62,16 @@ class DatabaseSeeder extends Seeder
         ]);
 
         PaymentInformation::factory()->create([
-            'id' => 1,
             'user_id' => 1,
             'card_number' => '1234567890123456',
             'name_on_card' => 'Admin Admin',
         ]);
         PaymentInformation::factory()->create([
-            'id' => 2,
             'user_id' => 2,
             'card_number' => '1234567890123456',
             'name_on_card' => 'Guest User',
         ]);
         PaymentInformation::factory()->create([
-            'id' => 3,
             'user_id' => 3,
             'card_number' => '1234567890123456',
             'name_on_card' => 'Guest User 2',
@@ -206,7 +200,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         ShoppingCart::create([
-            'id' => 1,
             'user_id' => $users[array_rand($users)],
         ]);
     }
