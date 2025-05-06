@@ -58,9 +58,11 @@ class CartController extends Controller
             'quantity' => 'required|integer|min:1'
         ]);
 
+        $user = auth()->user();
+
         $shoppingCartProduct = ShoppingCartProduct::create([
             // HARDCODED FOR NOW
-            'shopping_cart_id' => 3,
+            'shopping_cart_id' => $user->shoppingCart->id,
             'product_id' => $request->product_id,
             'quantity' => $request->quantity
         ]);
