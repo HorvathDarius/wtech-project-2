@@ -93,6 +93,7 @@ class ProductController extends Controller
         $colorFilter = $filterRequest->input('colors', []);
         $stockFilter = $filterRequest->input('stock');
         $priceCategory = $filterRequest->input('price_category', []);
+        $sortSelect = $filterRequest->input('sortSelect');
         $query = Product::where('product_category', $category);
 
         if (empty(!$colorFilter))
@@ -121,7 +122,23 @@ class ProductController extends Controller
             $query->where('quantity', '=', 0);
         }
 
-        $results = $query->orderBy('created_at')->paginate(10);
+        if ($sortSelect === 'Lowest-Price'){
+            $query->orderBy('product_price', 'ASC');
+        }
+        else if ($sortSelect === 'Highest-Price'){
+            $query->orderBy('product_price', 'DESC');
+        }
+        else if ($sortSelect === 'Product-Name-A-Z'){
+            $query->orderBy('product_visible_name', 'ASC');
+        }
+        else if ($sortSelect === 'Product-Name-Z-A'){
+            $query->orderBy('product_visible_name', 'DESC');
+        }
+        else{
+            $query->orderBy('created_at');
+        }
+
+        $results = $query->paginate(10);
 
         $viewName = match ($category) {
             'guitar' => 'productsGuitars',

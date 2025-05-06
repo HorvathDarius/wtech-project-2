@@ -20,83 +20,86 @@
         </div>
 
         <!-- Filters and Sort -->
-        <div class="container mx-auto px-20 grid grid-cols-1 md:grid-cols-[3fr_1fr] gap-0">
+        <form action="{{ route('products.filter', ['category' => 'guitar']) }}" method="post">
+            @csrf
             <!-- Filters -->
-            <div class="bg-white border rounded shadow">
-                <div class="bg-primary text-white px-4 py-2 rounded-t font-bold mb-4 text-center">Filters</div>
-                <form action="{{ route('products.filter', ['category' => 'guitar']) }}" method="post"
-                    class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
-                    @csrf
-                    <!-- Color -->
-                    <div>
-                        <h4 class="font-semibold mb-2">Color</h4>
-                        <label class="flex items-center space-x-2">
-                            <input type="checkbox" id="hovno" name="colors[]" value="red"
-                                {{ in_array('red', $colors ?? []) ? 'checked' : '' }} class="accent-primary" />
-                            <span>Crimson Red</span>
-                        </label>
-                        <label class="flex items-center space-x-2">
-                            <input type="checkbox" name="colors[]" value="blue"
-                                {{ in_array('blue', $colors ?? []) ? 'checked' : '' }} class="accent-primary" />
-                            <span>Blueish Blue</span>
-                        </label>
-                        <label class="flex items-center space-x-2">
-                            <input type="checkbox" name="colors[]" value="black"
-                                {{ in_array('black', $colors ?? []) ? 'checked' : '' }} class="accent-primary" />
-                            <span>Pitch Black</span>
-                        </label>
-                    </div>
+            <div class="container mx-auto px-20 grid grid-cols-1 md:grid-cols-[3fr_1fr] gap-0">
+                <div class="bg-white border rounded shadow">
+                    <div class="bg-primary text-white px-4 py-2 rounded-t font-bold mb-4 text-center">Filters</div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
 
-                    <!-- In stock -->
-                    <div>
-                        <h4 class="font-semibold mb-2">Stock</h4>
-                        <label class="flex items-center space-x-2">
-                            <input type="radio" name="stock" value="in_stock"
-                                {{ ($stocks ?? '') === 'in_stock' ? 'checked' : '' }} class="accent-primary" />
-                            <span>In stock</span>
-                        </label>
-                        <label class="flex items-center space-x-2">
-                            <input type="radio" name="stock" value="sold_out"
-                                {{ ($stocks ?? '') === 'sold_out' ? 'checked' : '' }} class="accent-primary" />
-                            <span>Sold out</span>
-                        </label>
-                        <label class="flex items-center space-x-2">
-                            <input type="radio" name="stock" value="all"
-                                {{ ($stocks ?? '') === 'all' ? 'checked' : '' }} class="accent-primary" />
-                            <span>All</span>
-                        </label>
-                    </div>
+                        <!-- Color -->
+                        <div>
+                            <h4 class="font-semibold mb-2">Color</h4>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" id="hovno" name="colors[]" value="red"
+                                    {{ in_array('red', $colors ?? []) ? 'checked' : '' }} class="accent-primary" />
+                                <span>Crimson Red</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="colors[]" value="blue"
+                                    {{ in_array('blue', $colors ?? []) ? 'checked' : '' }} class="accent-primary" />
+                                <span>Blueish Blue</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="colors[]" value="black"
+                                    {{ in_array('black', $colors ?? []) ? 'checked' : '' }} class="accent-primary" />
+                                <span>Pitch Black</span>
+                            </label>
+                        </div>
 
-                    <!-- Price -->
-                    <div>
-                        <h4 class="font-semibold mb-2">Price</h4>
-                        <label class="flex items-center space-x-2">
-                            <input type="checkbox" name="price_category[]" value="price_category_1"
-                                {{ in_array('price_category_1', $prices ?? []) ? 'checked' : '' }} class="accent-primary" />
-                            <span>0€ - 250€</span>
-                        </label>
-                        <label class="flex items-center space-x-2">
-                            <input type="checkbox" name="price_category[]" value="price_category_2"
-                                {{ in_array('price_category_2', $prices ?? []) ? 'checked' : '' }} class="accent-primary" />
-                            <span>250€ - 500€</span>
-                        </label>
-                        <label class="flex items-center space-x-2">
-                            <input type="checkbox" name="price_category[]" value="price_category_3"
-                                {{ in_array('price_category_3', $prices ?? []) ? 'checked' : '' }}
-                                class="accent-primary" />
-                            <span>500€ +</span>
-                        </label>
-                    </div>
-                    <button type="submit" class="bg-primary text-white px-4 py-2 rounded-md cursor-pointer sm:col-start-3">
-                        Show Results
-                    </button>
-                </form>
-            </div>
+                        <!-- In stock -->
+                        <div>
+                            <h4 class="font-semibold mb-2">Stock</h4>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="stock" value="in_stock"
+                                    {{ ($stocks ?? '') === 'in_stock' ? 'checked' : '' }} class="accent-primary" />
+                                <span>In stock</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="stock" value="sold_out"
+                                    {{ ($stocks ?? '') === 'sold_out' ? 'checked' : '' }} class="accent-primary" />
+                                <span>Sold out</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="stock" value="all"
+                                    {{ ($stocks ?? '') === 'all' ? 'checked' : '' }} class="accent-primary" />
+                                <span>All</span>
+                            </label>
+                        </div>
 
-            <!-- Sort -->
-            <div class="px-2">
-                <form>
-                    <select id="sortables"
+                        <!-- Price -->
+                        <div>
+                            <h4 class="font-semibold mb-2">Price</h4>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="price_category[]" value="price_category_1"
+                                    {{ in_array('price_category_1', $prices ?? []) ? 'checked' : '' }}
+                                    class="accent-primary" />
+                                <span>0€ - 250€</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="price_category[]" value="price_category_2"
+                                    {{ in_array('price_category_2', $prices ?? []) ? 'checked' : '' }}
+                                    class="accent-primary" />
+                                <span>250€ - 500€</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="price_category[]" value="price_category_3"
+                                    {{ in_array('price_category_3', $prices ?? []) ? 'checked' : '' }}
+                                    class="accent-primary" />
+                                <span>500€ +</span>
+                            </label>
+                        </div>
+                        <button type="submit"
+                            class="bg-primary text-white px-4 py-2 rounded-md cursor-pointer sm:col-start-3">
+                            Show Results
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sort -->
+                <div class="px-2">
+                    <select name="sortSelect" id="sortables"
                         class="w-full mt-4 sm:mt-0 bg-primary text-white px-4 py-2 text-sm rounded-md focusw-full cursor-pointer">
                         <!-- <option selected>Sort</option> -->
                         <option value="Lowest-Price">Lowest Price</option>
@@ -104,9 +107,9 @@
                         <option value="Product-Name-A-Z">Product Name A- Z</option>
                         <option value="Product-Name-Z-A">Product Name Z - A</option>
                     </select>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
         <!-- Product Grid -->
         <div
             class="container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-y-10 place-items-center">
