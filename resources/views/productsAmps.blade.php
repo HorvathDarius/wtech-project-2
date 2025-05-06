@@ -114,7 +114,7 @@
             class="container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-10 place-items-center">
             @foreach ($products as $item)
                 <!-- Single Product Card -->
-                <a href="{{ url('amp/' . $item->product_link_name) }}"
+                <a href="{{ url('product/' . $item->product_link_name) }}"
                     class="border rounded shadow overflow-hidden w-60 col-span-1">
                     <div class="relative h-64 flex items-center justify-center">
                         <img src="\images\amp\{{ $item->product_image }}" alt="thumb1" class="object-cover" />

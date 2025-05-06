@@ -32,17 +32,24 @@
         <div
             class="container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-y-10 place-items-center">
             <!-- Single Product Card -->
-
-
-            <!-- View All button -->
-            <div class="col-span-full flex justify-center">
-                <a href="{{ route('dashboard') }}">
-                    <button
-                        class="bg-primary hover:bg-red-600 text-white text-sm md:text-lg md:px-6 px-4 py-2 rounded-md cursor-pointer">
-                        View All
-                    </button>
+            @foreach ($popularProducts as $item)
+                <!-- Single Product Card -->
+                <a href="{{ url('product/' . $item->product_link_name) }}"
+                    class="border rounded shadow overflow-hidden w-60 col-span-1">
+                    <div class="relative h-64 flex items-center justify-center">
+                        <img src="\images\{{ $item->product_category }}\{{ $item->product_image }}" alt="thumb1"
+                            class="object-cover" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-l">{{ $item->product_visible_name }}</h3>
+                        <p class="text-sm">{{ $item->product_price }} €</p>
+                        <p class="text-sm text-gray-600">3 colors</p>
+                        <div class="flex justify-end mt-2">
+                            <button class="text-xl">🛒</button>
+                        </div>
+                    </div>
                 </a>
-            </div>
+            @endforeach
         </div>
         <!-- Products on sale -->
         <div class="w-full bg-primary py-2 px-4">
@@ -51,17 +58,23 @@
         <div
             class="container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-y-10 place-items-center">
             <!-- Single Product Card -->
-
-
-
-            <!-- View All button -->
-            <div class="col-span-full flex justify-center">
-                <a href="{{ route('dashboard') }}">
-                    <button
-                        class="bg-primary hover:bg-red-600 text-white text-sm md:text-lg md:px-6 px-4 py-2 rounded-md cursor-pointer">
-                        View All
-                    </button>
+            @foreach ($productsOnSale as $item)
+                <!-- Single Product Card -->
+                <a href="{{ url('product/' . $item->product_link_name) }}"
+                    class="border rounded shadow overflow-hidden w-60 col-span-1">
+                    <div class="relative h-64 flex items-center justify-center">
+                        <img src="\images\{{ $item->product_category }}\{{ $item->product_image }}" alt="thumb1"
+                            class="object-cover" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-l">{{ $item->product_visible_name }}</h3>
+                        <p class="text-sm">{{ $item->product_price }} €</p>
+                        <p class="text-sm text-gray-600">3 colors</p>
+                        <div class="flex justify-end mt-2">
+                            <button class="text-xl">🛒</button>
+                        </div>
+                    </div>
                 </a>
-            </div>
+            @endforeach
         </div>
     @endsection
