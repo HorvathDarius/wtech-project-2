@@ -9,11 +9,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
-// Placeholders yet to be implemented
-Route::get('/', function () {
-    return view('landingPage');
-})->name('dashboard');
+Route::get('/', [ProductController::class, 'showLandingPageProducts'])
+    ->name('dashboard');
 
+// Placeholders yet to be implemented
 Route::get('/success', function () {
     return view('orderSuccess');
 })->name('orderSuccess');
@@ -45,7 +44,7 @@ Route::get('/user/{id}', [ProfileController::class, 'show'])
 // Product routes
 Route::get('/products/{category}', [ProductController::class, 'showProductCategory'])
     ->name('products.category');
-Route::get('/guitars/{product_link_name}', [ProductController::class, 'showProduct'])
+Route::get('/product/{product_link_name}', [ProductController::class, 'showProduct'])
     ->name('showGuitar');
 Route::get('/products/{category}/search', [ProductController::class, 'searchProduct'])
     ->name('products.search');

@@ -19,7 +19,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $product = Product::create([
             'product_visible_name' => $request->product_visible_name,
             'product_link_name' => $request->product_visible_name . '-' . $request->product_category,
@@ -47,6 +46,16 @@ class ProductController extends Controller
         };
 
         return view($viewName, ['products' => $products]);
+    }
+
+    public function showLandingPageProducts()
+    {
+        $popularProducts = Product::inRandomOrder()->take(6)->get();
+        $productsOnSale = Product::inRandomOrder()->take(6)->get();
+
+        return view('landingPage',
+        ['popularProducts' => $popularProducts,
+         'productsOnSale' => $productsOnSale]);
     }
 
     public function showProduct($product_link_name)
@@ -81,7 +90,6 @@ class ProductController extends Controller
 
     public function filterProduct(Request $filterRequest, $category)
     {
-
         $colorFilter = $filterRequest->input('colors', []);
         $stockFilter = $filterRequest->input('stock');
         $priceCategory = $filterRequest->input('price_category', []);

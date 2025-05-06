@@ -113,7 +113,7 @@
 
             @foreach ($products as $item)
                 <!-- Single Product Card -->
-                <a href="{{ url('guitars/' . $item->product_link_name) }}"
+                <a href="{{ url('product/' . $item->product_link_name) }}"
                     class="border rounded shadow overflow-hidden w-60 col-span-1">
                     <div class="relative h-64 flex items-center justify-center">
                         <img src="\images\guitar\{{ $item->product_image }}" alt="thumb1" class="object-cover" />
