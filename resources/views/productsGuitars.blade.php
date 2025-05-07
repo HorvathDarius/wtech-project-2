@@ -20,7 +20,7 @@
         </div>
 
         <!-- Filters and Sort -->
-        <form action="{{ route('products.filter', ['category' => 'guitar']) }}" method="post">
+        <form action="{{ route('products.filter', ['category' => 'guitar']) }}" method="get">
             @csrf
             <!-- Filters -->
             <div class="container mx-auto px-20 grid grid-cols-1 md:grid-cols-[3fr_1fr] gap-0">
@@ -102,10 +102,14 @@
                     <select name="sortSelect" id="sortables"
                         class="w-full mt-4 sm:mt-0 bg-primary text-white px-4 py-2 text-sm rounded-md focusw-full cursor-pointer">
                         <!-- <option selected>Sort</option> -->
-                        <option value="Lowest-Price">Lowest Price</option>
-                        <option value="Highest-Price">Highest Price</option>
-                        <option value="Product-Name-A-Z">Product Name A- Z</option>
-                        <option value="Product-Name-Z-A">Product Name Z - A</option>
+                        <option value="Lowest-Price" {{ ($sort ?? '') === 'Lowest-Price' ? 'selected' : '' }}>
+                            Lowest Price</option>
+                        <option value="Highest-Price" {{ ($sort ?? '') === 'Highest-Price' ? 'selected' : '' }}>
+                            Highest Price</option>
+                        <option value="Product-Name-A-Z" {{ ($sort ?? '') === 'Product-Name-A-Z' ? 'selected' : '' }}>
+                            Product Name A- Z</option>
+                        <option value="Product-Name-Z-A" {{ ($sort ?? '') === 'Product-Name-Z-A' ? 'selected' : '' }}>
+                            Product Name Z - A</option>
                     </select>
                 </div>
             </div>

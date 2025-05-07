@@ -149,8 +149,9 @@ class ProductController extends Controller
         return view($viewName,
         ['products' => $results,
          'colors' => $colorFilter,
-        'stocks' => $stockFilter,
-        'prices' => $priceCategory
+         'stocks' => $stockFilter,
+         'prices' => $priceCategory,
+         'sort' => $sortSelect,
         ]);
     }
 }

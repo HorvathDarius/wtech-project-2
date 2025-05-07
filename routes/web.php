@@ -48,10 +48,8 @@ Route::get('/product/{product_link_name}', [ProductController::class, 'showProdu
     ->name('showGuitar');
 Route::get('/products/{category}/search', [ProductController::class, 'searchProduct'])
     ->name('products.search');
-Route::post('/products/{category}/filter', [ProductController::class, 'filterProduct'])
+Route::get('/products/{category}/filter', [ProductController::class, 'filterProduct'])
     ->name('products.filter');
-Route::post('/products/{category}/sortProduct', [ProductController::class, 'sortProduct'])
-    ->name('products.sort');
 
 // Shopping cart routes
 Route::get('/cart', [CartController::class, 'index'])
