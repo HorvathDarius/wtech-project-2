@@ -25,7 +25,7 @@
             <!-- Filters -->
             <div class="bg-white border rounded shadow">
                 <div class="bg-primary text-white px-4 py-2 rounded-t font-bold mb-4 text-center">Filters</div>
-                <form action="{{ route('products.filter', ['category' => 'bass']) }}" method="post"
+                <form action="{{ route('products.filter', ['category' => 'bass']) }}" method="get"
                     class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
                     @csrf
                     <!-- Color -->
@@ -94,18 +94,23 @@
                 </form>
             </div>
 
+            {{-- Debug output --}}
+            <p>Current sort: {{ $sort ?? '' }}</p>
+
             <!-- Sort -->
             <div class="px-2">
-                <form>
-                    <select id="sortables"
-                        class="w-full mt-4 sm:mt-0 bg-primary text-white px-4 py-2 text-sm rounded-md focusw-full cursor-pointer">
-                        <!-- <option selected>Sort</option> -->
-                        <option value="Lowest-Price">Lowest Price</option>
-                        <option value="Highest-Price">Highest Price</option>
-                        <option value="Product-Name-A-Z">Product Name A- Z</option>
-                        <option value="Product-Name-Z-A">Product Name Z - A</option>
-                    </select>
-                </form>
+                <select name="sortSelect" id="sortables"
+                    class="w-full mt-4 sm:mt-0 bg-primary text-white px-4 py-2 text-sm rounded-md focusw-full cursor-pointer">
+                    <!-- <option selected>Sort</option> -->
+                    <option value="Lowest-Price" {{ ($sort ?? '') === 'Lowest-Price' ? 'selected' : '' }}>
+                        Lowest Price</option>
+                    <option value="Highest-Price" {{ ($sort ?? '') === 'Highest-Price' ? 'selected' : '' }}>
+                        Highest Price</option>
+                    <option value="Product-Name-A-Z" {{ ($sort ?? '') === 'Product-Name-A-Z' ? 'selected' : '' }}>
+                        Product Name A- Z</option>
+                    <option value="Product-Name-Z-A" {{ ($sort ?? '') === 'Product-Name-Z-A' ? 'selected' : '' }}>
+                        Product Name Z - A</option>
+                </select>
             </div>
         </div>
 
