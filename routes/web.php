@@ -54,6 +54,8 @@ Route::get('/products/{category}/filter', [ProductController::class, 'filterProd
 // Shopping cart routes
 Route::get('/cart', [CartController::class, 'index'])
     ->name('cart.index');
+Route::get('/cart/{id}', [CartController::class, 'show'])
+    ->name('cart.show');
 Route::post('/cart', [CartController::class, 'store'])
     ->name('cart.store');
 Route::delete('/cart/{id}', [CartController::class, 'deleteShoppingCartProduct'])
@@ -64,6 +66,8 @@ Route::get('/order', [OrderController::class, 'index'])->name('order.index');
 Route::get('/checkout', [OrderController::class, 'create'])->name('order.create');
 Route::get('/order/{id}', [OrderController::class, 'show'])->name('order.show');
 Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+Route::post('/order/{id}', [OrderController::class, 'storeAnonymous'])->name('order.store.anonymous');
+Route::get('/checkout/{id}', [OrderController::class, 'createAnonymous'])->name('order.anonymous');
 Route::put('/order/{id}', [OrderController::class, 'update'])->name('order.update');
 
 // Admin routes
@@ -81,3 +85,6 @@ Route::get('/admin', [ProductController::class, 'index'])
 Route::get('/edit/{id}', [ProductController::class, 'showProductAdmin'])
     ->name('editProduct')
     ->middleware(['auth']);
+
+Route::post('/load-cart-products', [CartController::class, 'loadCartProducts'])
+    ->name('loadCartProducts');

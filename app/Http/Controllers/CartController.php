@@ -12,13 +12,20 @@ class CartController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $shoppingCart = ShoppingCart::query()
-            ->with(['products'])
-            ->where('user_id', auth()->id())
-            ->first();
-
+        if (auth()->user() !== null) {
+            $shoppingCart = ShoppingCart::query()
+                ->with(['products'])
+                ->where('user_id', auth()->id())
+                ->first();
+        } else {
+            return view('cart', [
+                'products' => [],
+                'totalPrice' => 0,
+                'recommendedProducts' => []
+            ]);
+        }
         if (!$shoppingCart->products() || $shoppingCart->products()->count() == 0) {
             return view('cartFallback');
         }
@@ -60,8 +67,12 @@ class CartController extends Controller
 
         $user = auth()->user();
 
+        if ($user === null) {
+            // dd('User not authenticated');
+            return redirect()->route('cart.index');
+        }
+
         $shoppingCartProduct = ShoppingCartProduct::create([
-            // HARDCODED FOR NOW
             'shopping_cart_id' => $user->shoppingCart->id,
             'product_id' => $request->product_id,
             'quantity' => $request->quantity
@@ -73,9 +84,33 @@ class CartController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ShoppingCart $shoppingCart)
+    public function show(string $id)
     {
-        return 'show';
+        $shoppingCart = ShoppingCart::query()
+            ->with(['products'])
+            ->where('id', $id)
+            ->first();
+
+
+        if (!$shoppingCart->products() || $shoppingCart->products()->count() == 0) {
+            return view('cartFallback');
+        }
+
+        $totalPrice = 0;
+        foreach ($shoppingCart->products as $products) {
+            $totalPrice += $products->product->product_price * $products->quantity;
+        }
+
+        $recommendedProducts = Product::query()
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();
+
+        return view('cart', [
+            'products' => $shoppingCart->products,
+            'totalPrice' => $totalPrice,
+            'recommendedProducts' => $recommendedProducts
+        ]);
     }
 
     /**
@@ -92,6 +127,38 @@ class CartController extends Controller
     public function update(Request $request, ShoppingCart $shoppingCart)
     {
         //
+    }
+
+    public function loadCartProducts(Request $request)
+    {
+        // dd($request->all());
+        $products = $request->payload['products'];
+        $cartId = $request->payload['cartId'];
+        // dd($cartId);
+
+        if ($cartId === 0) {
+            $shoppingCart = ShoppingCart::create([
+                'user_id' => 0
+            ]);
+            $cartId = $shoppingCart->id;
+        }
+
+        foreach ($products as $product) {
+            $shoppingCartProduct = ShoppingCartProduct::create(
+                [
+                    'shopping_cart_id' => $cartId,
+                    'product_id' => $product['product_id'],
+                    'quantity' => $product['quantity']
+                ]
+            );
+        }
+
+        // dd($shoppingCart->id);
+
+        return response()->json([
+            'status' => 'success',
+            'id' => $cartId,
+        ]);
     }
 
     public function deleteShoppingCartProduct(Request $request)
