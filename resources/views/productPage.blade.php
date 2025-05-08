@@ -80,13 +80,16 @@
                     @csrf
                     <input type='hidden' name="product_id" value="{{ $products->id }}">
                     <input type="number" value="1" min="1" max="{{ $products->quantity }}" step="1" name="quantity"
-                        class="border rounded p-1" />
+                        class="border rounded p-1" {{ $products->quantity === 0 ? "disabled" : "" }} />
                     @auth
-                        <button class="bg-primary hover:bg-primary text-white px-4 py-2 rounded cursor-pointer" type="submit">
+                        <button
+                            class=" text-white px-4 py-2 rounded  {{ $products->quantity === 0 ? 'bg-red-300' : 'cursor-pointer bg-primary hover:bg-primary' }}"
+                            type="submit" {{ $products->quantity === 0 ? "disabled" : "" }}>
                     @endauth
                         @guest
-                            <button class="bg-primary hover:bg-primary text-white px-4 py-2 rounded cursor-pointer"
-                                type="submit" id="add-to-cart-btn">
+                            <button
+                                class=" text-white px-4 py-2 rounded  {{ $products->quantity === 0 ? 'bg-red-300' : 'cursor-pointer bg-primary hover:bg-primary' }}"
+                                type="submit" id="add-to-cart-btn" {{ $products->quantity === 0 ? "disabled" : "" }}>
                         @endguest
                             Add to Cart
                         </button>
