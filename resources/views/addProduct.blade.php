@@ -21,17 +21,19 @@
       <div class="row-span-1 row-start-4 lg:row-span-1 lg:col-span-1 lg:col-start-2 lg:row-start-1 flex flex-col p-2">
         <label for="product_visible_name">Product Name <span class="text-red-600">*</span></label>
         <input id="product_visible_name" name="product_visible_name" type="text"
-        class="w-full h-10 bg-gray-200 rounded-sm" required />
+        class="w-full h-10 bg-gray-200 rounded-sm px-2" required />
       </div>
       <!-- PRICE INPUT -->
       <div class="row-span-1 row-start-5 lg:row-span-1 lg:col-span-1 lg:col-start-3 lg:row-start-1 flex flex-col p-2">
         <label for="price">Price <span class="text-red-600">*</span></label>
-        <input id="price" name="product_price" type="number" class="w-full h-10 bg-gray-200 rounded-sm" required />
+        <input id="price" name="product_price" type="number" class="w-full h-10 bg-gray-200 rounded-sm px-2"
+        required />
       </div>
       <!-- CATEGORY SELECTION INPUT -->
       <div class="row-span-1 row-start-6 lg:row-span-1 lg:col-span-1 lg:col-start-2 lg:row-start-2 flex flex-col p-2">
         <label for="category">Product Category <span class="text-red-600">*</span></label>
-        <select name="product_category" class="w-full h-10 bg-gray-200 rounded-sm" required id="product_category">
+        <select name="product_category" class="w-full h-10 bg-gray-200 rounded-sm px-2" required
+        id="product_category">
         <option value="guitar">Guitar</option>
         <option value="bass">Bass</option>
         <option value="amp">Amp</option>
@@ -55,14 +57,14 @@
       <!-- DESCRIPTION INPUT -->
       <div class="row-span-1 row-start-8 lg:row-span-1 lg:col-span-1 lg:col-start-2 lg:row-start-3 flex flex-col p-2">
         <label for="product_description">Product Description <span class="text-red-600">*</span></label>
-        <textarea id="product_description" name="product_description" class="w-full bg-gray-200 rounded-sm" rows="2"
-        required></textarea>
+        <textarea id="product_description" name="product_description" class="w-full bg-gray-200 rounded-sm px-2"
+        rows="2" required></textarea>
       </div>
 
       <!-- QUANTITY INPUT -->
       <div class="row-span-1 row-start-9 lg:row-span-1 lg:col-span-1 lg:col-start-3 lg:row-start-3 flex flex-col p-2">
         <label for="quantity">Quantity <span class="text-red-600">*</span></label>
-        <input id="quantity" name="quantity" type="number" class="w-full h-10 bg-gray-200 rounded-sm" required />
+        <input id="quantity" name="quantity" type="number" class="w-full h-10 bg-gray-200 rounded-sm px-2" required />
       </div>
 
       <!-- PRODUCT IMAGE UPLOAD -->
@@ -97,26 +99,6 @@
     </form>
     </div>
   </div>
-  <script>
-    const fileInput = document.getElementById('fileInput');
-    fileInput.addEventListener('change', function () {
-    const files = fileInput.files;
-
-    const image1 = fileInput.files[0];
-    const image2 = fileInput.files[1];
-
-    const category = document.getElementById('product_category');
-
-    if (image1) {
-      const bigImage = document.getElementById('bigImage');
-      bigImage.src = 'images/' + category.value + '/' + image1.name;
-    }
-
-    if (image2) {
-      const smallImage = document.getElementById('smallImage');
-      smallImage.src = 'images/' + category.value + '/' + image2.name;
-    };
-    });
-
-  </script>
 @endsection
+
+@vite(['resources/js/reloadFormImages.js'])

@@ -16,9 +16,9 @@
                 @csrf
                 <div class="flex flex-col gap-2">
                     <label for="email">E-mail <span class="text-red-600"></span></label>
-                    <input id="email" name="email" type="text" class="w-80 h-10 bg-gray-200 rounded-sm" required />
+                    <input id="email" name="email" type="text" class="w-80 h-10 bg-gray-200 rounded-sm px-2" required />
                     <label for="password">Password <span class="text-red-600"></span></label>
-                    <input id="password" name="password" type="password" class="w-80 h-10 bg-gray-200 rounded-sm"
+                    <input id="password" name="password" type="password" class="w-80 h-10 bg-gray-200 rounded-sm px-2"
                         required />
                 </div>
                 <button type="submit" class="bg-primary w-80 h-10 rounded-md text-white cursor-pointer">Sign in</button>
