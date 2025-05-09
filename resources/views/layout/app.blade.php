@@ -15,6 +15,12 @@
 
     <!-- MAIN CONTAINER -->
     <main class="w-full h-full overflow-scroll">
+        @if (session('error'))
+            <div class="w-ull h-10 bg-red-500 text-white flex items-center justify-center">
+                {{ session('error') }}
+            </div>
+        @endif
+
         @yield('content')
     </main>
     <!-- FOOTER -->
