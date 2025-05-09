@@ -45,10 +45,13 @@
                                         Edit Product
                                     </button>
                                 </a>
-                                <button
-                                    class="text-primary border border-primary h-10 w-48 px-10 rounded-md cursor-pointer">
-                                    Delete Product
-                                </button>
+                                <form action="{{ route('products.deleteProduct', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-primary border border-primary h-10 w-48 px-10 rounded-md cursor-pointer">
+                                        Delete Product
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     @endforeach

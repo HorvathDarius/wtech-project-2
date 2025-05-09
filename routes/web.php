@@ -90,5 +90,9 @@ Route::post('/edit/{id}', [ProductController::class, 'edit'])
     ->name('products.editProduct')
     ->middleware(['auth']);
 
+Route::delete('/delete/{id}', [ProductController::class, 'delete'])
+    ->name('products.deleteProduct')
+    ->middleware(['auth']);
+
 Route::post('/load-cart-products', [CartController::class, 'loadCartProducts'])
     ->name('loadCartProducts');

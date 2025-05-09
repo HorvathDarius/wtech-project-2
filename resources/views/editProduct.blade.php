@@ -82,8 +82,8 @@
                             <label for="product_description">Product Description <span class="text-red-600">*</span></label>
                             <textarea id="product_description" name="product_description" class="w-full bg-gray-200 rounded-sm" rows="2"
                                 required>
-    {{ $product->product_description }}
-    </textarea>
+                                {{ $product->product_description }}
+                            </textarea>
                         </div>
 
                         <!-- PRODUCT IMAGE UPLOAD -->
@@ -113,10 +113,13 @@
                                 </a>
                             </div>
                             <div class="flex flex-col md:flex-row gap-4">
-                                <button class="text-primary border border-primary h-10 w-48 px-10 rounded-md cursor-pointer"
-                                    type="button">
-                                    Delete Product
-                                </button>
+                                <form action="{{ route('products.deleteProduct', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-primary border border-primary h-10 w-48 px-10 rounded-md cursor-pointer">
+                                        Delete Product
+                                    </button>
+                                </form>
                                 <button type="submit"
                                     class="bg-primary text-white h-10 w-48 px-10 rounded-md cursor-pointer">
                                     Save Changes

@@ -57,7 +57,7 @@ class ProductController extends Controller
 
     public function edit($product_id, Request $request)
     {
-        $product = Product::find($product_id);
+        $product = Product::findOrFail($product_id);
 
         $request->validate([
             'product_image.*' => 'mimes:jpg,png,pdf|max:2048',
@@ -133,6 +133,26 @@ class ProductController extends Controller
         $product->save();
 
         return redirect()->route('products.editProduct', ['id' => $product->id]);
+    }
+
+    public function delete($product_id)
+    {
+        $product = Product::findOrFail($product_id);
+
+        // Delete images
+        $categoryFolder = $product->product_category;
+
+        if ($product->product_image) {
+            Storage::disk('public')->delete("uploads/images/{$categoryFolder}/{$product->product_image}");
+        }
+
+        if ($product->product_image_second) {
+            Storage::disk('public')->delete("uploads/images/{$categoryFolder}/{$product->product_image_second}");
+        }
+
+        // Delete product from database
+        $product->delete();
+        return redirect()->route('adminPage')->with('success', 'Product deleted successfully.');
     }
 
     public function showProductCategory($category)
