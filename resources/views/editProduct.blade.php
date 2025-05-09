@@ -82,8 +82,8 @@
                             <label for="product_description">Product Description <span class="text-red-600">*</span></label>
                             <textarea id="product_description" name="product_description" class="w-full bg-gray-200 rounded-sm" rows="2"
                                 required>
-    {{ $product->product_description }}
-    </textarea>
+                                {{ $product->product_description }}
+                            </textarea>
                         </div>
 
                         <!-- PRODUCT IMAGE UPLOAD -->
