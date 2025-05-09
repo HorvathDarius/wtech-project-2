@@ -4,7 +4,7 @@
         <section class="flex flex-col items-center p-2 gap-4">
             <!-- LOGO -->
             <div class="w-30 h-30">
-                <img src="/images/Logo.png" alt="StringShop logo" />
+                <img src="{{asset('/images/logo.png')}}" alt="StringShop logo" />
             </div>
             <div class="flex flex-col">
                 <h1 class="w-full h-10 text-center">Welcome to StringShop</h1>

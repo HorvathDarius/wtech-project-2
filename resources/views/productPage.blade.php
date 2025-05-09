@@ -5,26 +5,22 @@
         <div class="grid grid-cols-5 grid-rows-4 mb-5 gap-2">
             <!-- Thumbnails -->
             <div class="lg:w-32 lg:h-32 md:w-20 md:h-20  sm:w-24 sm:h-full  w-full h-full col-start-1 row-start-1">
-                <img src="{{ '/images/' . $products->product_category . '/' . $products->product_image }}" alt="thumb1"
-                    class="object-cover" />
+                <img src="{{ asset('storage/uploads/images/guitar/'.$products->product_image) }}" alt="thumb1" class="object-cover" />
             </div>
             <div class="lg:w-32 lg:h-32 md:w-20 md:h-20 sm:w-24 sm:h-full w-full h-full col-start-1 row-start-2">
-                <img src="{{ '/images/' . $products->product_category . '/' . $products->product_image }}" alt="thumb2"
-                    class="object-cover" />
+                <img src="{{ asset('storage/uploads/images/guitar/'.$products->product_image) }}" alt="thumb2" class="object-cover" />
             </div>
             <div class="lg:w-32 lg:h-32 md:w-20 md:h-20 sm:w-24 sm:h-full h-full col-start-1 row-start-3">
-                <img src="{{ '/images/' . $products->product_category . '/' . $products->product_image }}" alt="thumb3"
-                    class="object-cover" />
+                <img src="{{ asset('storage/uploads/images/guitar/'.$products->product_image) }}" alt="thumb3" class="object-cover" />
             </div>
             <div class="lg:w-32 lg:h-32 md:w-20 md:h-20 sm:w-24 sm:h-full h-full col-start-1 row-start-4">
-                <img src="{{ '/images/' . $products->product_category . '/' . $products->product_image }}" alt="thumb4"
-                    class="object-cover" />
+                <img src="{{ asset('storage/uploads/images/guitar/'.$products->product_image) }}" alt="thumb4" class="object-cover" />
             </div>
 
             <!-- Main image -->
             <div
                 class="md:rows-span-4 md:col-span-5 row-span-4 col-span-5 col-start-2 row-start-1 bg-gray-300 max-w-120 max-h-full lg:max-w-150 lg:max-h-150 border border-gray-400">
-                <img src="{{ '/images/' . $products->product_category . '/' . $products->product_image }}" alt="main"
+                <img src="{{ asset('storage/uploads/images/guitar/'.$products->product_image) }}" alt="main"
                     class="w-full h-full object-cover" />
             </div>
         </div>

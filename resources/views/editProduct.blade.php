@@ -5,23 +5,23 @@
         <div class="grid w-full absolute left-0 top-20 p-4 grid-rows-1 grid-cols-1">
             <div class="w-full rounded-md border-1 border-outline flex flex-col">
                 <p class="w-full text-xl px-8 py-2 font-bold text-primary">Editing Product</p>
-                <form action="{{ route('products.editProduct', ['id' => $product->id]) }}" method="post">
+                <form action="{{ route('products.editProduct', ['id' => $product->id]) }}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div
                         class="center border border-outline rounded-md sm:m-4 sm:mt-0 relative grid grid-rows-12 grid-cols-1 lg:grid-rows-6 lg:grid-cols-3">
                         <!-- MAIN IMAGE -->
                         <div
                             class="row-span-2 lg:row-span-4 lg:col-span-1 lg:col-start-1 lg:row-start-1 flex justify-center items-center my-4">
-                            <img src="{{ '/images/' . $product->product_category . '/' . $product->product_image }}"
+                            <img src="{{ asset('storage/uploads/images/' . $product->product_category . '/' . $product->product_image)}}"
                                 alt="Product Image Main" class="w-60 h-60 lg:w-80 lg:h-80 border" />
                         </div>
 
                         <!-- SMALLER IMAGES -->
                         <div
                             class="row-span-1 row-start-3 lg:row-span-1 lg:col-span-1 lg:col-start-1 lg:row-start-5 flex px-10 gap-6">
-                            <img src="{{ '/images/' . $product->product_category . '/' . $product->product_image }}"
+                            <img src="{{ asset('storage/uploads/images/' . $product->product_category . '/' . $product->product_image)}}"
                                 alt="Product Image Small" class="w-20 h-20 border" />
-                            <img src="{{ '/images/' . $product->product_category . '/' . $product->product_image }}"
+                            <img src="{{ asset('storage/uploads/images/' . $product->product_category . '/' . $product->product_image)}}"
                                 alt="Product Image Small" class="w-20 h-20 border object-cover" />
                         </div>
 
@@ -60,7 +60,7 @@
                         <!-- AVAILABLE COLORS SELECTION -->
                         <div class="row-span-1 row-start-7 lg:row-span-1 lg:col-span-1 lg:col-start-3 lg:row-start-2 p-2">
                             <label for="colors">Available Colors <span class="text-red-600">*</span></label>
-                            <div class="flex justify-center items-center gap-4 py-2" id="colors">
+                             <div class="flex justify-center items-center gap-4 py-2" id="colors">
                                 <input id="red" name="product_color" value="red" type="radio"
                                     class="h-6 w-6 accent-primary rounded-sm"
                                     {{ $product->product_color === 'red' ? 'checked' : '' }} />

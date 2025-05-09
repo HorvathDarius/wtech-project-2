@@ -4,7 +4,7 @@
   <div class="grid w-full absolute left-0 top-20 p-4 grid-rows-1 grid-cols-1">
     <div class="w-full rounded-md border-1 border-outline flex flex-col">
     <p class="w-full text-xl px-8 py-2 font-bold text-primary">Adding New Product</p>
-    <form action="{{ route('addProductStore') }}" method="post">
+    <form action="{{ route('addProductStore') }}" enctype="multipart/form-data" method="post">
       @csrf
       <div
       class="center border border-outline rounded-md sm:m-4 sm:mt-0 relative grid grid-rows-12 grid-cols-1 lg:grid-rows-6 lg:grid-cols-3">

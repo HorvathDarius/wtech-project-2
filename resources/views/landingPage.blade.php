@@ -5,8 +5,8 @@
         <!-- Banner section -->
         <div class="relative h-150 overflow-hidden py-8">
             <picture class="w-full h-full block">
-                <source media="(min-width: 768px)" srcset="\images\guitar\badass_guitar.png" />
-                <img src="\images\guitar\promotion_vertical.png" alt="Guitar" class="w-full h-full object-cover" />
+                <source media="(min-width: 768px)" srcset="{{ asset('storage/uploads/images/guitar/badass_guitar.png') }}" />
+                <img src="{{ asset('storage/uploads/images/guitar/promotion_vertical.png') }}" alt="Guitar" class="w-full h-full object-cover" />
             </picture>
 
             <!-- Content over banner -->
@@ -37,7 +37,7 @@
                 <a href="{{ url('product/' . $item->product_link_name) }}"
                     class="border rounded shadow overflow-hidden w-60 col-span-1">
                     <div class="relative h-64 flex items-center justify-center">
-                        <img src="\images\{{ $item->product_category }}\{{ $item->product_image }}" alt="thumb1"
+                        <img src="{{ asset('storage/uploads/images/' . $item->product_category . '/' . $item->product_image) }}" alt="thumb1"
                             class="object-cover" />
                     </div>
                     <div class="p-4">
@@ -63,7 +63,7 @@
                 <a href="{{ url('product/' . $item->product_link_name) }}"
                     class="border rounded shadow overflow-hidden w-60 col-span-1">
                     <div class="relative h-64 flex items-center justify-center">
-                        <img src="\images\{{ $item->product_category }}\{{ $item->product_image }}" alt="thumb1"
+                        <img src="{{ asset('storage/uploads/images/' . $item->product_category . '/' . $item->product_image) }}" alt="thumb1"
                             class="object-cover" />
                     </div>
                     <div class="p-4">

@@ -19,7 +19,7 @@
                                     <div
                                         class="grid grid-cols-[1fr_4fr_1fr] border rounded shadow overflow-hidden w-full h-28">
                                         <div class="col-start-1 row-span-3 col-span-1 relative w-28 h-28">
-                                            <img src="{{ '/images/' . $product->product->product_category . '/' . $product->product->product_image }}"
+                                            <img src="{{ asset('storage/uploads/images/' . $product->product->product_category . '/' . $product->product->product_image )}}"
                                                 alt="thumb1" class="object-cover" />
                                         </div>
                                         <div class="p-4 col-start-2 col-span-1">
@@ -120,7 +120,7 @@
         @foreach ($recommendedProducts as $product)
             <div class="block border rounded shadow overflow-hidden w-60 col-span-1">
                 <div class="relative h-64 flex items-center justify-center">
-                    <img src="{{ '/images/' . $product->product_category . '/' . $product->product_image }}" alt="thumb1"
+                    <img src="{{ asset('storage\uploads{{ '/images/' . $product->product_category . '/' . $product->product_image }}')}}" alt="thumb1"
                         class="object-cover" />
                 </div>
                 <div class="p-4 col-span-1">

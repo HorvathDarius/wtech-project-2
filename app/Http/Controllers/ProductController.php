@@ -19,6 +19,20 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'file' => 'mimes:jpg,png,pdf|max:2048',
+        ]);
+
+        $paths = [];
+
+        foreach ($request->file('product_image') as $file) {
+            $categoryFolder = in_array($request->product_category, ['guitar', 'bass', 'amp'])
+                ? $request->product_category
+                : 'other';
+
+            $paths[] = $file->store("uploads/images/{$categoryFolder}", 'public');
+        }
+
         $product = Product::create([
             'product_visible_name' => $request->product_visible_name,
             'product_link_name' => $request->product_visible_name . '-' . $request->product_category,

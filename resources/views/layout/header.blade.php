@@ -3,7 +3,7 @@
         <div class="flex sm:gap-6 items-center">
             <div class="w-20 h-20">
                 <a href="{{ route('dashboard') }}" class="cursor-pointer">
-                    <img src="/images/Logo.png" alt="StringShop logo" />
+                    <img src="{{ asset('/images/Logo.png') }}" alt="StringShop logo" />
                 </a>
             </div>
             <a href="{{ route('products.category', ['category' => 'guitar']) }}">Guitars</a>

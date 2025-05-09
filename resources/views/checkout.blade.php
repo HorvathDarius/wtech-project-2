@@ -124,7 +124,7 @@
         <div
         class="p-2 row-span-1 col-span-1 row-start-16 col-start-1 md:row-span-1 md:col-span-1 md:row-start-8 md:col-start-1 flex items-center">
         <button class="w-full rounded-lg cursor-pointer flex justify-center">
-          <img src="/images/googlePayPaymentOption.png" alt="googlePayPaymentOption" class="w-80 rounded-sm" />
+          <img src="{{ asset('/images/googlePayPaymentOption.png')}}" alt="googlePayPaymentOption" class="w-80 rounded-sm" />
         </button>
         </div>
         <div
@@ -136,7 +136,7 @@
         <div
         class="p-2 row-span-1 col-span-1 row-start-17 col-start-1 md:row-span-1 md:col-span-1 md:row-start-9 md:col-start-1 flex items-center">
         <button class="w-full rounded-sm cursor-pointer flex justify-center">
-          <img src="/images/applePayPaymentOption.png" alt="applePayPaymentOption" class="w-80 rounded-lg" />
+          <img src="{{ asset('/images/applePayPaymentOption.png')}}" alt="applePayPaymentOption" class="w-80 rounded-lg" />
         </button>
         </div>
         <div
@@ -148,7 +148,7 @@
         <div
         class="p-2 row-span-1 col-span-1 row-start-18 col-start-1 md:row-span-1 md:col-span-1 md:row-start-10 md:col-start-1 flex items-center">
         <button class="w-full cursor-pointer flex justify-center">
-          <img src="/images/paypalPaymentOption.png" alt="paypalPaymentOption" class="w-80" />
+          <img src="{{ asset('/images/paypalPaymentOption.png')}}" alt="paypalPaymentOption" class="w-80" />
         </button>
         </div>
         <div
@@ -176,8 +176,7 @@
       <div class="flex flex-col h-120 w-full gap-4 overflow-scroll">
         @foreach ($products as $product)
       <div class="w-full flex items-center gap-4">
-      <img src={{"/images/" . $product->product->product_category . "/" . $product->product->product_image }}
-        alt="guitarPlaceholder" class="w-40 h-40" />
+      <img src="{{ asset('storage/uploads/images/' . $product->product->product_category . '/' . $product->product->product_image )}}" alt="guitarPlaceholder" class="w-40 h-40" />
       <div class="flex flex-col gap-2">
         <p class="text-lg font-bold">{{ $product->product->product_visible_name }}</p>
         <article class="text-md font-light">
