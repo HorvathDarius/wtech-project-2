@@ -113,13 +113,10 @@
                                 </a>
                             </div>
                             <div class="flex flex-col md:flex-row gap-4">
-                                <form action="{{ route('products.deleteProduct', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-primary border border-primary h-10 w-48 px-10 rounded-md cursor-pointer">
-                                        Delete Product
-                                    </button>
-                                </form>
+                                <button class="text-primary border border-primary h-10 w-48 px-10 rounded-md cursor-pointer"
+                                    type="button">
+                                    Delete Product
+                                </button>
                                 <button type="submit"
                                     class="bg-primary text-white h-10 w-48 px-10 rounded-md cursor-pointer">
                                     Save Changes
