@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 
 class ProductController extends Controller
@@ -20,7 +21,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'file' => 'mimes:jpg,png,pdf|max:2048',
+            'product_image' => 'mimes:jpg,png,pdf|max:2048',
         ]);
 
         if (count($request->file('product_image')) < 2) {
@@ -35,7 +36,7 @@ class ProductController extends Controller
                 : 'other';
 
             $storedPath = $file->store("uploads/images/{$categoryFolder}", 'public');
-            $filename = basename($storedPath); // "abc123.png"
+            $filename = basename($storedPath);
             $paths[] = $filename;
         }
 
@@ -57,7 +58,78 @@ class ProductController extends Controller
     public function edit($product_id, Request $request)
     {
         $product = Product::find($product_id);
-        $product->product_visible_name = $request->product_visible_name;
+
+        $request->validate([
+            'product_image.*' => 'mimes:jpg,png,pdf|max:2048',
+        ]);
+
+        $files = $request->file('product_image');
+        $files = is_array($files) ? $files : ($files ? [$files] : []);
+
+        if (count($files) > 0) {
+            // Delete the old images
+            $categoryFolder =  $product->product_category;
+            $path_main = "uploads/images/{$categoryFolder}/{$product->product_image}";
+            $path_second = "uploads/images/{$categoryFolder}/{$product->product_image_second}";
+            Storage::disk('public')->delete($path_main);
+            Storage::disk('public')->delete($path_second);
+
+            // Upload the new images
+            $paths = [];
+            foreach ($request->file('product_image') as $file) {
+                $categoryFolder = in_array($request->product_category, ['guitar', 'bass', 'amp'])
+                    ? $request->product_category
+                    : 'other';
+
+                $storedPath = $file->store("uploads/images/{$categoryFolder}", 'public');
+                $filename = basename($storedPath);
+                $paths[] = $filename;
+            }
+
+            // Set new images to db
+            $product->product_image = $paths[0] ?? null;
+            $product->product_image_second = $paths[1] ?? null;
+        }
+
+        $oldCategory = $product->product_category;
+        $newCategory = $request->product_category;
+        if ($oldCategory !== $newCategory) {
+            // Move main image
+            if ($product->product_image) {
+                $oldPath = "uploads/images/{$oldCategory}/{$product->product_image}";
+                $newPath = "uploads/images/{$newCategory}/{$product->product_image}";
+
+                if (Storage::disk('public')->exists($oldPath)) {
+                    Storage::disk('public')->move($oldPath, $newPath);
+                }
+            }
+
+            // Move secondary image
+            if ($product->product_image_second) {
+                $oldPath = "uploads/images/{$oldCategory}/{$product->product_image_second}";
+                $newPath = "uploads/images/{$newCategory}/{$product->product_image_second}";
+
+                if (Storage::disk('public')->exists($oldPath)) {
+                    Storage::disk('public')->move($oldPath, $newPath);
+                }
+            }
+        }
+
+        $fields = [
+            'product_visible_name',
+            'product_price',
+            'product_category',
+            'product_color',
+            'quantity',
+            'product_description',
+        ];
+
+        foreach ($fields as $field) {
+            if ($request->has($field)) {
+                $product->$field = $request->input($field);
+            }
+        }
+
         $product->save();
 
         return redirect()->route('products.editProduct', ['id' => $product->id]);

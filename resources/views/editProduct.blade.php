@@ -95,7 +95,7 @@
                                 <label for="fileInput"
                                     class="bg-primary text-white h-10 w-48 rounded-md cursor-pointer flex justify-center items-center">Browse
                                     Files
-                                    <input id="fileInput" name="product_image" class="hidden" type="file" />
+                                    <input id="fileInput" name="product_image[]" class="hidden" type="file" multiple/>
                                 </label>
                             </div>
                         </div>

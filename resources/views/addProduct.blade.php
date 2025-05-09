@@ -11,11 +11,11 @@
       <!-- MAIN IMAGE -->
       <div
         class="row-span-2 lg:row-span-4 lg:col-span-1 lg:col-start-1 lg:row-start-1 flex justify-center items-center my-4">
-        <img src="/images/uploadImage.png" alt="uploadImage" class="w-60 h-60 lg:w-80 lg:h-80 border" id="bigImage" />
+        <img src="{{ asset('images/uploadImage.png') }}" alt="uploadImage" class="w-60 h-60 lg:w-80 lg:h-80 border" id="bigImage" />
       </div>
       <!-- SMALLER IMAGES -->
       <div class="row-span-1 row-start-3 lg:row-span-1 lg:col-span-1 lg:col-start-1 lg:row-start-5 flex px-10 gap-6">
-        <img src="/images/uploadImage.png" alt="uploadImage" class="w-20 h-20 border" id="smallImage" />
+        <img src="{{ asset('images/uploadImage.png') }}" alt="uploadImage" class="w-20 h-20 border" id="smallImage" />
       </div>
       <!-- PRODUCT NAME INPUT -->
       <div class="row-span-1 row-start-4 lg:row-span-1 lg:col-span-1 lg:col-start-2 lg:row-start-1 flex flex-col p-2">
