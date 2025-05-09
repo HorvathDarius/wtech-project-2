@@ -4,7 +4,7 @@
     <main class="pb-14">
         <!-- Banner section -->
         <div class="relative h-50 overflow-hidden">
-            <img src="{{ asset('storage/uploads/images/amp/amp_placeholder.webp') }}" alt="Guitar Banner"
+            <img src="{{ asset('/images/amp/amp_placeholder.webp') }}" alt="Guitar Banner"
                 class="w-full h-full object-cover filter blur-sm" />
 
             <!-- Content over banner -->

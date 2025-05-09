@@ -94,9 +94,6 @@
                 </form>
             </div>
 
-            {{-- Debug output --}}
-            <p>Current sort: {{ $sort ?? '' }}</p>
-
             <!-- Sort -->
             <div class="px-2">
                 <select name="sortSelect" id="sortables"

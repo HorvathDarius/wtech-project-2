@@ -7,6 +7,9 @@ document.getElementById("fileInput").addEventListener("change", () => {
     const image1 = files[0];
     const image2 = files[1];
 
+    console.log(image1);
+    console.log(image2);
+
     // Load instrument category
     const category = document.getElementById("product_category");
 
@@ -21,11 +24,11 @@ document.getElementById("fileInput").addEventListener("change", () => {
         // If big image is empty, set it to first image
         if (isEmpty1) {
             bigImage.src =
-                "storage/uploads/images/" + category.value + "/" + image1.name;
+                "/storage/uploads/images/" + category.value + "/" + image1.name;
             // If small image is empty, set it to first image
         } else if (isEmpty2) {
             smallImage.src =
-                "storage/uploads/images/" + category.value + "/" + image1.name;
+                "/storage/uploads/images/" + category.value + "/" + image1.name;
         }
     }
 
@@ -39,11 +42,11 @@ document.getElementById("fileInput").addEventListener("change", () => {
         // If big image is empty, set it to second image
         if (isEmpty1) {
             bigImage.src =
-                "storage/uploads/images/" + category.value + "/" + image2.name;
+                "/storage/uploads/images/" + category.value + "/" + image2.name;
             // If small image is empty, set it to second image
         } else if (isEmpty2) {
             smallImage.src =
-                "storage/uploads/images/" + category.value + "/" + image2.name;
+                "/storage/uploads/images/" + category.value + "/" + image2.name;
         }
     }
 });

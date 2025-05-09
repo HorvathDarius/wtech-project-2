@@ -20,14 +20,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'product_image' => 'mimes:jpg,png,pdf|max:2048',
-        ]);
-
-        if (count($request->file('product_image')) < 2) {
-            return back()->withErrors(['message' => 'Please upload at least 2 images.']);
-        }
-
         $paths = [];
 
         foreach ($request->file('product_image') as $file) {
@@ -35,7 +27,9 @@ class ProductController extends Controller
                 ? $request->product_category
                 : 'other';
 
-            $storedPath = $file->store("uploads/images/{$categoryFolder}", 'public');
+            $path = "/uploads/images/" . $categoryFolder;
+
+            $storedPath = $file->store($path, "public");
             $filename = basename($storedPath);
             $paths[] = $filename;
         }
@@ -68,7 +62,7 @@ class ProductController extends Controller
 
         if (count($files) > 0) {
             // Delete the old images
-            $categoryFolder =  $product->product_category;
+            $categoryFolder = $product->product_category;
             $path_main = "uploads/images/{$categoryFolder}/{$product->product_image}";
             $path_second = "uploads/images/{$categoryFolder}/{$product->product_image_second}";
             Storage::disk('public')->delete($path_main);
@@ -135,7 +129,7 @@ class ProductController extends Controller
         return redirect()->route('products.editProduct', ['id' => $product->id]);
     }
 
-    public function delete($product_id)
+    public function delete(string $product_id)
     {
         $product = Product::findOrFail($product_id);
 
@@ -175,9 +169,13 @@ class ProductController extends Controller
         $popularProducts = Product::inRandomOrder()->take(6)->get();
         $productsOnSale = Product::inRandomOrder()->take(6)->get();
 
-        return view('landingPage',
-        ['popularProducts' => $popularProducts,
-         'productsOnSale' => $productsOnSale]);
+        return view(
+            'landingPage',
+            [
+                'popularProducts' => $popularProducts,
+                'productsOnSale' => $productsOnSale
+            ]
+        );
     }
 
     public function showProduct($product_link_name)
@@ -210,6 +208,18 @@ class ProductController extends Controller
         return view($viewName, ['products' => $results]);
     }
 
+    public function searchAdminProducts(Request $searchRequest)
+    {
+        $search = $searchRequest->input('search');
+
+        $results = Product::query()
+            ->where('product_visible_name', 'ilike', "%$search%")
+            ->orderBy('created_at')
+            ->paginate(10);
+
+        return view('adminPage', ['products' => $results]);
+    }
+
     public function filterProduct(Request $filterRequest, $category)
     {
         $colorFilter = $filterRequest->input('colors', []);
@@ -218,13 +228,11 @@ class ProductController extends Controller
         $sortSelect = $filterRequest->input('sortSelect');
         $query = Product::where('product_category', $category);
 
-        if (empty(!$colorFilter))
-        {
+        if (empty(!$colorFilter)) {
             $query->whereIn('product_color', $colorFilter);
         }
 
-        if (empty(!$priceCategory))
-        {
+        if (empty(!$priceCategory)) {
             $query->where(function ($q) use ($priceCategory) {
                 if (in_array('price_category_1', $priceCategory)) {
                     $q->orWhereBetween('product_price', [0, 250]);
@@ -244,19 +252,15 @@ class ProductController extends Controller
             $query->where('quantity', '=', 0);
         }
 
-        if ($sortSelect === 'Lowest-Price'){
+        if ($sortSelect === 'Lowest-Price') {
             $query->orderBy('product_price', 'ASC');
-        }
-        else if ($sortSelect === 'Highest-Price'){
+        } else if ($sortSelect === 'Highest-Price') {
             $query->orderBy('product_price', 'DESC');
-        }
-        else if ($sortSelect === 'Product-Name-A-Z'){
+        } else if ($sortSelect === 'Product-Name-A-Z') {
             $query->orderBy('product_visible_name', 'ASC');
-        }
-        else if ($sortSelect === 'Product-Name-Z-A'){
+        } else if ($sortSelect === 'Product-Name-Z-A') {
             $query->orderBy('product_visible_name', 'DESC');
-        }
-        else{
+        } else {
             $query->orderBy('created_at');
         }
 
@@ -268,12 +272,15 @@ class ProductController extends Controller
             'amp' => 'productsAmps'
         };
 
-        return view($viewName,
-        ['products' => $results,
-         'colors' => $colorFilter,
-         'stocks' => $stockFilter,
-         'prices' => $priceCategory,
-         'sort' => $sortSelect,
-        ]);
+        return view(
+            $viewName,
+            [
+                'products' => $results,
+                'colors' => $colorFilter,
+                'stocks' => $stockFilter,
+                'prices' => $priceCategory,
+                'sort' => $sortSelect,
+            ]
+        );
     }
 }

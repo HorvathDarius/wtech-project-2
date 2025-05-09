@@ -27,6 +27,7 @@ Route::get('/productPage', function () {
     return view('cartFallback');
 })->name('productPage');
 
+
 // User handling routes
 Route::get('/register', [RegisteredUserController::class, 'create'])
     ->name('registerView');
@@ -75,13 +76,17 @@ Route::put('/order/{id}', [OrderController::class, 'update'])->name('order.updat
 Route::get('/add', function () {
     return view('addProduct');
 })->name('addProduct');
+
 Route::post('/add', [ProductController::class, 'store'])
-    ->name('addProductStore')
+    ->name('products.store')
     ->middleware(['auth']);
 
 Route::get('/admin', [ProductController::class, 'index'])
     ->name('adminPage')
     ->middleware(['auth', CheckAdminRights::class]);
+
+Route::get('/admin/search', [ProductController::class, 'searchAdminProducts'])
+    ->name('admin.search');
 
 Route::get('/edit/{id}', [ProductController::class, 'showProductAdmin'])
     ->name('products.editProduct')
