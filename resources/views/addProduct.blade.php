@@ -4,18 +4,18 @@
   <div class="grid w-full absolute left-0 top-20 p-4 grid-rows-1 grid-cols-1">
     <div class="w-full rounded-md border-1 border-outline flex flex-col">
     <p class="w-full text-xl px-8 py-2 font-bold text-primary">Adding New Product</p>
-    <form action="{{ route('addProductStore') }}" method="post">
+    <form action="{{ route('addProductStore') }}" enctype="multipart/form-data" method="post">
       @csrf
       <div
       class="center border border-outline rounded-md sm:m-4 sm:mt-0 relative grid grid-rows-12 grid-cols-1 lg:grid-rows-6 lg:grid-cols-3">
       <!-- MAIN IMAGE -->
       <div
         class="row-span-2 lg:row-span-4 lg:col-span-1 lg:col-start-1 lg:row-start-1 flex justify-center items-center my-4">
-        <img src="/images/uploadImage.png" alt="uploadImage" class="w-60 h-60 lg:w-80 lg:h-80 border" id="bigImage" />
+        <img src="{{ asset('images/uploadImage.png') }}" alt="uploadImage" class="w-60 h-60 lg:w-80 lg:h-80 border" id="bigImage" />
       </div>
       <!-- SMALLER IMAGES -->
       <div class="row-span-1 row-start-3 lg:row-span-1 lg:col-span-1 lg:col-start-1 lg:row-start-5 flex px-10 gap-6">
-        <img src="/images/uploadImage.png" alt="uploadImage" class="w-20 h-20 border" id="smallImage" />
+        <img src="{{ asset('images/uploadImage.png') }}" alt="uploadImage" class="w-20 h-20 border" id="smallImage" />
       </div>
       <!-- PRODUCT NAME INPUT -->
       <div class="row-span-1 row-start-4 lg:row-span-1 lg:col-span-1 lg:col-start-2 lg:row-start-1 flex flex-col p-2">

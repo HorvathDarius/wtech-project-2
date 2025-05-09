@@ -83,7 +83,11 @@ Route::get('/admin', [ProductController::class, 'index'])
     ->middleware(['auth']);
 
 Route::get('/edit/{id}', [ProductController::class, 'showProductAdmin'])
-    ->name('editProduct')
+    ->name('products.editProduct')
+    ->middleware(['auth']);
+
+Route::post('/edit/{id}', [ProductController::class, 'edit'])
+    ->name('products.editProduct')
     ->middleware(['auth']);
 
 Route::post('/load-cart-products', [CartController::class, 'loadCartProducts'])

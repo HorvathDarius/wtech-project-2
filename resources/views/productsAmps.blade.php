@@ -4,7 +4,7 @@
     <main class="pb-14">
         <!-- Banner section -->
         <div class="relative h-50 overflow-hidden">
-            <img src="\images\amp\amp_placeholder.webp" alt="Guitar Banner"
+            <img src="{{ asset('storage/uploads/images/amp/amp_placeholder.webp') }}" alt="Guitar Banner"
                 class="w-full h-full object-cover filter blur-sm" />
 
             <!-- Content over banner -->
@@ -119,7 +119,7 @@
                 <a href="{{ url('product/' . $item->product_link_name) }}"
                     class="border rounded shadow overflow-hidden w-60 col-span-1">
                     <div class="relative h-64 flex items-center justify-center">
-                        <img src="\images\amp\{{ $item->product_image }}" alt="thumb1" class="object-cover" />
+                        <img src="{{ asset('storage/uploads/images/amp/'.$item->product_image) }}" alt="thumb1" class="object-cover" />
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold text-l">{{ $item->product_visible_name }}</h3>

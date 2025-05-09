@@ -40,7 +40,7 @@
 
       <!-- ONE PRODUCT -->
       <div class="w-full flex items-center gap-4">
-      <img src="{{'/images/' . $product->product->product_category . '/' . $product->product->product_image}}"
+      <img src="{{asset('storage/uploads/images/' . $product->product->product_category . '/' . $product->product->product_image)}}"
         alt="guitarPlaceholder" class="w-40 h-40 object-cover" />
       <div class="flex flex-col gap-2">
         <p class="text-lg font-bold">{{ $product->product->product_visible_name}}</p>
