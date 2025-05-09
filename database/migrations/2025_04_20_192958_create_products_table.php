@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('product_description');
             $table->string('product_image')->nullable();
+            $table->string('product_image_second')->nullable();
             $table->timestamps();
         });
     }

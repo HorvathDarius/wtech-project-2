@@ -91,6 +91,7 @@ class DatabaseSeeder extends Seeder
                 'quantity' => rand(1, 50),
                 'product_description' => 'This is a great instrument.',
                 'product_image' => $i.'_'.$colors[0].'.png',
+                'product_image_second' => $i.'_2'.$colors[0].'.png',
             ]);
             Product::create([
                 'product_visible_name' => $name,

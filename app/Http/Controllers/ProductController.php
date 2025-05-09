@@ -23,6 +23,10 @@ class ProductController extends Controller
             'file' => 'mimes:jpg,png,pdf|max:2048',
         ]);
 
+        if (count($request->file('product_image')) < 2) {
+            return back()->withErrors(['message' => 'Please upload at least 2 images.']);
+        }
+
         $paths = [];
 
         foreach ($request->file('product_image') as $file) {
@@ -30,7 +34,9 @@ class ProductController extends Controller
                 ? $request->product_category
                 : 'other';
 
-            $paths[] = $file->store("uploads/images/{$categoryFolder}", 'public');
+            $storedPath = $file->store("uploads/images/{$categoryFolder}", 'public');
+            $filename = basename($storedPath); // "abc123.png"
+            $paths[] = $filename;
         }
 
         $product = Product::create([
@@ -41,7 +47,8 @@ class ProductController extends Controller
             'product_category' => $request->product_category,
             'product_color' => $request->product_color,
             'quantity' => $request->quantity,
-            'product_image' => $request->product_image[0],
+            'product_image' => $paths[0],
+            'product_image_second' => $paths[1],
         ]);
 
         return redirect()->route('products.editProduct', ['id' => $product->id]);
