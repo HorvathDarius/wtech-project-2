@@ -1,18 +1,21 @@
+// When delete buttin is clicked
 document.getElementById("deleteProduct").addEventListener("click", () => {
-    console.log("DELETE PRODUCT");
+    // Get product ID from the form
     const productId = document.getElementById("product_id").value;
-    console.log("Product ID: " + productId);
 
+    // Send DELETE request
     fetch(`/delete/${productId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
+            // CSRF token
+            // Workaround inspired by https://stackoverflow.com/questions/7524585/how-do-i-get-the-information-from-a-meta-tag-with-javascript
             "X-CSRF-TOKEN": document
                 .querySelector('meta[name="csrf-token"]')
                 .getAttribute("content"),
         },
-    }).then((response) => {
-        // Redirect to the products page
+    }).then(() => {
+        // Redirect to the admin products page
         window.location.href = "/admin";
     });
 });

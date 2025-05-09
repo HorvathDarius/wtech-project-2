@@ -8,16 +8,22 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+    /**
+     * Return products for admin.
+     */
     public function index()
     {
         $products = Product::query()
-            ->paginate(3);
+            ->paginate(10);
 
         return view("adminPage", [
             'products' => $products,
         ]);
     }
 
+    /**
+     * Product creation.
+     */
     public function store(Request $request)
     {
         $paths = [];
@@ -49,6 +55,9 @@ class ProductController extends Controller
         return redirect()->route('products.editProduct', ['id' => $product->id]);
     }
 
+    /**
+     * Product update
+     */
     public function edit($product_id, Request $request)
     {
         $product = Product::findOrFail($product_id);
@@ -129,6 +138,9 @@ class ProductController extends Controller
         return redirect()->route('products.editProduct', ['id' => $product->id]);
     }
 
+    /**
+     * Delete product
+     */
     public function delete(string $product_id)
     {
         $product = Product::findOrFail($product_id);
@@ -149,6 +161,9 @@ class ProductController extends Controller
         return redirect()->route('adminPage')->with('success', 'Product deleted successfully.');
     }
 
+    /**
+     * Show products category page
+     */
     public function showProductCategory($category)
     {
         $products = Product::where('product_category', $category)
@@ -164,6 +179,9 @@ class ProductController extends Controller
         return view($viewName, ['products' => $products]);
     }
 
+    /**
+     * Show landing page products
+     */
     public function showLandingPageProducts()
     {
         $popularProducts = Product::inRandomOrder()->take(6)->get();
@@ -178,18 +196,27 @@ class ProductController extends Controller
         );
     }
 
+    /**
+     * Show product page
+     */
     public function showProduct($product_link_name)
     {
         $products = Product::where('product_link_name', $product_link_name)->first();
         return view('productPage', compact('products'));
     }
 
+    /**
+     * Show product edit page
+     */
     public function showProductAdmin($id)
     {
         $product = Product::where('id', $id)->first();
         return view('editProduct', ['product' => $product]);
     }
 
+    /**
+     * Search products on category page
+     */
     public function searchProduct($category, Request $searchRequest)
     {
         $search = $searchRequest->input('search');
@@ -208,6 +235,9 @@ class ProductController extends Controller
         return view($viewName, ['products' => $results]);
     }
 
+    /**
+     * Search all products on admin page
+     */
     public function searchAdminProducts(Request $searchRequest)
     {
         $search = $searchRequest->input('search');
@@ -220,6 +250,9 @@ class ProductController extends Controller
         return view('adminPage', ['products' => $results]);
     }
 
+    /**
+     * Filter products on category page
+     */
     public function filterProduct(Request $filterRequest, $category)
     {
         $colorFilter = $filterRequest->input('colors', []);

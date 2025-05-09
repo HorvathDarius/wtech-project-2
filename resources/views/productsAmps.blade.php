@@ -78,7 +78,8 @@
                         </label>
                         <label class="flex items-center space-x-2">
                             <input type="checkbox" name="price_category[]" value="price_category_2"
-                                {{ in_array('price_category_2', $prices ?? []) ? 'checked' : '' }} class="accent-primary" />
+                                {{ in_array('price_category_2', $prices ?? []) ? 'checked' : '' }}
+                                class="accent-primary" />
                             <span>250€ - 500€</span>
                         </label>
                         <label class="flex items-center space-x-2">
@@ -119,7 +120,8 @@
                 <a href="{{ url('product/' . $item->product_link_name) }}"
                     class="border rounded shadow overflow-hidden w-60 col-span-1">
                     <div class="relative h-64 flex items-center justify-center">
-                        <img src="{{ asset('storage/uploads/images/amp/'.$item->product_image) }}" alt="thumb1" class="object-cover" />
+                        <img src="{{ asset('storage/uploads/images/amp/' . $item->product_image) }}" alt="thumb1"
+                            class="object-cover" />
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold text-l">{{ $item->product_visible_name }}</h3>

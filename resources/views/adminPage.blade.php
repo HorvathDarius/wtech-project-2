@@ -30,7 +30,7 @@
                         <div
                             class="w-full h-100 sm:h-40 border border-outline flex flex-col sm:flex-row justify-between items-center p-8 md:p-4 lg:p-8">
                             <div class="flex gap-4 sm:gap-10 lg:gap-20 items-center object-cover">
-                                <img src="{{ asset('storage/uploads/images/' . $product->product_category . '/' . $product->product_image)}}"
+                                <img src="{{ asset('storage/uploads/images/' . $product->product_category . '/' . $product->product_image) }}"
                                     alt="guitarPlaceholder" class="w-30 h-30 border" />
                                 <div class="text-lg">
                                     <p class="text-xl font-bold">{{ $product->product_visible_name }}</p>
@@ -84,6 +84,6 @@
                 </div>
             </div>
         </div>
-@endsection
+    @endsection
 
     @vite('resources/js/app.js')

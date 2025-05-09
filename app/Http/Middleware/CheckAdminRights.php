@@ -17,7 +17,8 @@ class CheckAdminRights
     {
         // dd($request->user());
         $user = $request->user();
-        // dd($user->user_role === "admin");
+
+        // Check if the user is admin
         if ($user->user_role === "admin") {
             return $next($request);
         }

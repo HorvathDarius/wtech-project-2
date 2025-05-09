@@ -260,14 +260,6 @@ class OrderController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
@@ -280,13 +272,5 @@ class OrderController extends Controller
         $order->order_status = $request->order_status;
         $order->save();
         return redirect()->route('order.show', $order->id);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Order $order)
-    {
-        //
     }
 }

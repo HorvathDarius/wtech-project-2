@@ -48,14 +48,6 @@ class CartController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return 'create';
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -72,13 +64,13 @@ class CartController extends Controller
             return redirect()->route('cart.index');
         }
 
-        $shoppingCartProduct = ShoppingCartProduct::create([
+        ShoppingCartProduct::create([
             'shopping_cart_id' => $user->shoppingCart->id,
             'product_id' => $request->product_id,
             'quantity' => $request->quantity
         ]);
 
-        return redirect()->route('cart.index')->with('success', 'Product added to cart successfully!');
+        return redirect()->route('cart.index');
     }
 
     /**
@@ -113,22 +105,6 @@ class CartController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ShoppingCart $shoppingCart)
-    {
-        return 'edit';
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ShoppingCart $shoppingCart)
-    {
-        //
-    }
-
     public function loadCartProducts(Request $request)
     {
         // dd($request->all());
@@ -144,7 +120,7 @@ class CartController extends Controller
         }
 
         foreach ($products as $product) {
-            $shoppingCartProduct = ShoppingCartProduct::create(
+            ShoppingCartProduct::create(
                 [
                     'shopping_cart_id' => $cartId,
                     'product_id' => $product['product_id'],
@@ -153,14 +129,15 @@ class CartController extends Controller
             );
         }
 
-        // dd($shoppingCart->id);
-
         return response()->json([
             'status' => 'success',
             'id' => $cartId,
         ]);
     }
 
+    /**
+     * Delete product from shopping cart.
+     */
     public function deleteShoppingCartProduct(Request $request)
     {
         $request->validate([
@@ -175,13 +152,5 @@ class CartController extends Controller
         }
 
         return redirect()->route('cart.index')->with('error', 'Product not found in cart!');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ShoppingCart $shoppingCart)
-    {
-        //
     }
 }
