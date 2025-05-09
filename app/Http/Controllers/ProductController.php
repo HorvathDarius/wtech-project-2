@@ -30,7 +30,16 @@ class ProductController extends Controller
             'product_image' => $request->product_image[0],
         ]);
 
-        return redirect()->route('editProduct', ['id' => $product->id]);
+        return redirect()->route('products.editProduct', ['id' => $product->id]);
+    }
+
+    public function edit($product_id, Request $request)
+    {
+        $product = Product::find($product_id);
+        $product->product_visible_name = $request->product_visible_name;
+        $product->save();
+
+        return redirect()->route('products.editProduct', ['id' => $product->id]);
     }
 
     public function showProductCategory($category)
