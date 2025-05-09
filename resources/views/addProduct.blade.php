@@ -11,7 +11,9 @@
       <!-- MAIN IMAGE -->
       <div
         class="row-span-2 lg:row-span-4 lg:col-span-1 lg:col-start-1 lg:row-start-1 flex justify-center items-center my-4">
-        <img src="{{ asset('images/uploadImage.png') }}" alt="uploadImage" class="w-60 h-60 lg:w-80 lg:h-80 border" id="bigImage" />
+        <img src="{{ asset('images/uploadImage.png') }}" alt="uploadImage"
+        class="w-60 h-60 lg:w-80 lg:h-80 border hover:blur-md hover:bg-stone-400 hover:cursor-pointer"
+        id="bigImage" />
       </div>
       <!-- SMALLER IMAGES -->
       <div class="row-span-1 row-start-3 lg:row-span-1 lg:col-span-1 lg:col-start-1 lg:row-start-5 flex px-10 gap-6">
@@ -71,8 +73,8 @@
       <div class="row-span-2 row-start-10 lg:row-span-2 lg:col-span-2 lg:col-start-2 lg:row-start-4 p-2">
         <div
         class="w-full h-full bg-gray-200 rounded-md flex flex-col items-center justify-center gap-2 border border-dashed">
-        <p class="font-bold text-lg text-primary">Drag and Drop an image to Upload</p>
-        <p>or</p>
+        {{-- <p class="font-bold text-lg text-primary">Drag and Drop an image to Upload</p> --}}
+        {{-- <p>or</p> --}}
         <label for="fileInput"
           class="bg-primary text-white h-10 w-48 rounded-md cursor-pointer flex justify-center items-center">Browse
           Files
@@ -101,4 +103,4 @@
   </div>
 @endsection
 
-@vite(['resources/js/reloadFormImages.js'])
+@vite(['resources/js/reloadFormImages.js', 'resources/js/clearImage.js'])

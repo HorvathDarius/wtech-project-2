@@ -12,12 +12,38 @@ document.getElementById("fileInput").addEventListener("change", () => {
 
     // Set images
     if (image1) {
+        // Get big image element
         const bigImage = document.getElementById("bigImage");
-        bigImage.src = "images/" + category.value + "/" + image1.name;
+        // Check if images is empty
+        const isEmpty1 = bigImage.src.includes("uploadImage.png");
+        const isEmpty2 = smallImage.src.includes("uploadImage.png");
+
+        // If big image is empty, set it to first image
+        if (isEmpty1) {
+            bigImage.src =
+                "storage/uploads/images/" + category.value + "/" + image1.name;
+            // If small image is empty, set it to first image
+        } else if (isEmpty2) {
+            smallImage.src =
+                "storage/uploads/images/" + category.value + "/" + image1.name;
+        }
     }
 
     if (image2) {
+        // Get small image element
         const smallImage = document.getElementById("smallImage");
-        smallImage.src = "images/" + category.value + "/" + image2.name;
+        // Check if images is empty
+        const isEmpty1 = bigImage.src.includes("uploadImage.png");
+        const isEmpty2 = smallImage.src.includes("uploadImage.png");
+
+        // If big image is empty, set it to second image
+        if (isEmpty1) {
+            bigImage.src =
+                "storage/uploads/images/" + category.value + "/" + image2.name;
+            // If small image is empty, set it to second image
+        } else if (isEmpty2) {
+            smallImage.src =
+                "storage/uploads/images/" + category.value + "/" + image2.name;
+        }
     }
 });

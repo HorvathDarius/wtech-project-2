@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\CheckAdminRights;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
@@ -80,7 +81,7 @@ Route::post('/add', [ProductController::class, 'store'])
 
 Route::get('/admin', [ProductController::class, 'index'])
     ->name('adminPage')
-    ->middleware(['auth']);
+    ->middleware(['auth', CheckAdminRights::class]);
 
 Route::get('/edit/{id}', [ProductController::class, 'showProductAdmin'])
     ->name('products.editProduct')
