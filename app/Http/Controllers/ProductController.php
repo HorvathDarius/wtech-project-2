@@ -70,8 +70,8 @@ class ProductController extends Controller
         if (count($files) > 0) {
             // Delete the old images
             $categoryFolder = $product->product_category;
-            $path_main = "uploads/images/{$categoryFolder}/{$product->product_image}";
-            $path_second = "uploads/images/{$categoryFolder}/{$product->product_image_second}";
+            $path_main = "uploads/images/" . $categoryFolder . "/" . $product->product_image;
+            $path_second = "uploads/images/" . $categoryFolder . "/" . $product->product_image_second;
             Storage::disk('public')->delete($path_main);
             Storage::disk('public')->delete($path_second);
 
@@ -82,7 +82,7 @@ class ProductController extends Controller
                     ? $request->product_category
                     : 'other';
 
-                $storedPath = $file->store("uploads/images/{$categoryFolder}", 'public');
+                $storedPath = $file->store("uploads/images/" . $categoryFolder, 'public');
                 $filename = basename($storedPath);
                 $paths[] = $filename;
             }
@@ -97,8 +97,8 @@ class ProductController extends Controller
         if ($oldCategory !== $newCategory) {
             // Move main image
             if ($product->product_image) {
-                $oldPath = "uploads/images/{$oldCategory}/{$product->product_image}";
-                $newPath = "uploads/images/{$newCategory}/{$product->product_image}";
+                $oldPath = "uploads/images/" . $oldCategory . "/" . $product->product_image;
+                $newPath = "uploads/images/" . $newCategory . "/ " . $product->product_image;
 
                 if (Storage::disk('public')->exists($oldPath)) {
                     Storage::disk('public')->move($oldPath, $newPath);
@@ -107,8 +107,8 @@ class ProductController extends Controller
 
             // Move secondary image
             if ($product->product_image_second) {
-                $oldPath = "uploads/images/{$oldCategory}/{$product->product_image_second}";
-                $newPath = "uploads/images/{$newCategory}/{$product->product_image_second}";
+                $oldPath = "uploads/images/" . $oldCategory . "/ " . $product->product_image_second;
+                $newPath = "uploads/images/" . $newCategory . "/" . $product->product_image_second;
 
                 if (Storage::disk('public')->exists($oldPath)) {
                     Storage::disk('public')->move($oldPath, $newPath);
@@ -132,8 +132,6 @@ class ProductController extends Controller
         }
 
         $product->save();
-
-        dd($product);
 
         return redirect()->route('products.editProduct', ['id' => $product->id]);
     }
