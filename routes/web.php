@@ -46,6 +46,7 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/cart/{id}', [CartController::class, 'show'])->name('cart.show');
 Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
 Route::delete('/cart/{id}', [CartController::class, 'deleteShoppingCartProduct'])->name('cart.removeItem');
+Route::put('/cart', [CartController::class, 'updateShoppingCartProduct'])->name('cart.updateShoppingCartProduct');
 
 // Order routes
 Route::get('/order', [OrderController::class, 'index'])->name('order.index');

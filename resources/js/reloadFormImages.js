@@ -7,9 +7,6 @@ document.getElementById("fileInput").addEventListener("change", () => {
     const image1 = files[0];
     const image2 = files[1];
 
-    console.log(image1);
-    console.log(image2);
-
     // Load instrument category
     const category = document.getElementById("product_category");
 

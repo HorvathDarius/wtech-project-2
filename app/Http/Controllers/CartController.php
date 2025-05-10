@@ -136,6 +136,23 @@ class CartController extends Controller
     }
 
     /**
+     *  Update quantity of product in shopping cart.
+     */
+    public function updateShoppingCartProduct(Request $request)
+    {
+        // Get the shopping cart product by ID
+        $shoppingCartProduct = ShoppingCartProduct::query()
+            ->where('id', $request->product_id)
+            ->first();
+
+        // If found, update the quantity
+        if ($shoppingCartProduct) {
+            $shoppingCartProduct->update(['quantity' => $request->quantity]);
+            return redirect()->route('cart.index');
+        }
+    }
+
+    /**
      * Delete product from shopping cart.
      */
     public function deleteShoppingCartProduct(Request $request)

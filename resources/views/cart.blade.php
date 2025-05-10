@@ -16,8 +16,7 @@
                         @foreach ($products as $product)
                             <tr class="h-28">
                                 <td class="p-1">
-                                    <div
-                                        class="grid grid-cols-[1fr_4fr_1fr] border rounded shadow overflow-hidden w-full h-28">
+                                    <div class="grid grid-cols-[1fr_4fr_1fr] border rounded shadow overflow-hidden w-full h-28">
                                         <div class="col-start-1 row-span-3 col-span-1 relative w-28 h-28">
                                             <img src="{{ asset('storage/uploads/images/' . $product->product->product_category . '/' . $product->product->product_image) }}"
                                                 alt="thumb1" class="object-cover" />
@@ -47,8 +46,10 @@
                                         </div>
 
                                         <div class="gap-1 text-center justify-around content-around bg-center">
-                                            <input type="number" value="{{ $product->quantity }}" min="1"
-                                                max="100" step="1" class="border rounded p-1 mx-auto" />
+
+                                            <input type="number" value="{{ $product->quantity }}" min="1" max="100" step="1"
+                                                class="border rounded p-1 mx-auto" name="quantity" id={{ $product->id }} />
+
                                             <p class="font-bold text-3xl text-primary">
                                                 {{ $product->product->product_price }} €
                                             </p>
@@ -135,6 +136,7 @@
     </div>
 @endsection
 
+@vite(['resources/js/updateQuantity.js'])
 @guest
     @vite(['resources/js/handleCartProductLoad.js', 'resources/js/redirectToCheckout.js'])
 @endguest

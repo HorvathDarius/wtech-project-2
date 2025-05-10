@@ -39,21 +39,21 @@
                 <div class="space-y-1 accent-primary">
 
                     <label class="flex items-center space-x-2">
-                        <a href="{{ url('guitars/' . $products->product_visible_name . '-' . 'red') }}"
+                        <a href="{{ url('product/' . $products->product_visible_name . '-' . 'red') }}"
                             title="red-guitar-version">
                             <span class="{{ $products->product_color === 'red' ? 'text-primary font-bold' : '' }}">Crimson
                                 red</span>
                         </a>
                     </label>
                     <label class="flex items-center space-x-2">
-                        <a href="{{ url('guitars/' . $products->product_visible_name . '-' . 'blue') }}"
+                        <a href="{{ url('product/' . $products->product_visible_name . '-' . 'blue') }}"
                             title="red-guitar-version">
                             <span class="{{ $products->product_color === 'blue' ? 'text-primary font-bold' : '' }}">Blueish
                                 blue</span>
                         </a>
                     </label>
                     <label class="flex items-center space-x-2">
-                        <a href="{{ url('guitars/' . $products->product_visible_name . '-' . 'black') }}"
+                        <a href="{{ url('product/' . $products->product_visible_name . '-' . 'black') }}"
                             title="red-guitar-version">
                             <span class="{{ $products->product_color === 'black' ? 'text-primary font-bold' : '' }}">Pitch
                                 black</span>
@@ -79,18 +79,18 @@
                 <form action="{{ route('cart.store') }}" method="POST" id="cart-form">
                     @csrf
                     <input type='hidden' name="product_id" value="{{ $products->id }}">
-                    <input type="number" value="1" min="1" max="{{ $products->quantity }}" step="1"
-                        name="quantity" class="border rounded p-1" {{ $products->quantity === 0 ? 'disabled' : '' }} />
+                    <input type="number" value="1" min="1" max="{{ $products->quantity }}" step="1" name="quantity"
+                        class="border rounded p-1" {{ $products->quantity === 0 ? 'disabled' : '' }} />
                     @auth
                         <button
                             class=" text-white px-4 py-2 rounded  {{ $products->quantity === 0 ? 'bg-red-300' : 'cursor-pointer bg-primary hover:bg-primary' }}"
                             type="submit" {{ $products->quantity === 0 ? 'disabled' : '' }}>
-                        @endauth
+                    @endauth
                         @guest
                             <button
                                 class=" text-white px-4 py-2 rounded  {{ $products->quantity === 0 ? 'bg-red-300' : 'cursor-pointer bg-primary hover:bg-primary' }}"
                                 type="submit" id="add-to-cart-btn" {{ $products->quantity === 0 ? 'disabled' : '' }}>
-                            @endguest
+                        @endguest
                             Add to Cart
                         </button>
                 </form>

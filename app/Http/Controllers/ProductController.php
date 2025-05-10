@@ -33,9 +33,7 @@ class ProductController extends Controller
                 ? $request->product_category
                 : 'other';
 
-            $path = "/uploads/images/" . $categoryFolder;
-
-            $storedPath = $file->store($path, "public");
+            $storedPath = $file->store("/uploads/images/" . $categoryFolder, "public");
             $filename = basename($storedPath);
             $paths[] = $filename;
         }
@@ -62,9 +60,9 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($product_id);
 
-        $request->validate([
-            'product_image.*' => 'mimes:jpg,png,pdf|max:2048',
-        ]);
+        // $request->validate([
+        //     'product_image.*' => 'mimes:jpg,png,pdf|max:2048',
+        // ]);
 
         $files = $request->file('product_image');
         $files = is_array($files) ? $files : ($files ? [$files] : []);
@@ -134,6 +132,8 @@ class ProductController extends Controller
         }
 
         $product->save();
+
+        dd($product);
 
         return redirect()->route('products.editProduct', ['id' => $product->id]);
     }

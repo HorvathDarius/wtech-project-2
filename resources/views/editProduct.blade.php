@@ -22,7 +22,7 @@
                         <!-- SMALLER IMAGES -->
                         <div
                             class="row-span-1 row-start-3 lg:row-span-1 lg:col-span-1 lg:col-start-1 lg:row-start-5 flex px-10 gap-6">
-                            <img src="{{ asset('storage/uploads/images/' . $product->product_category . '/' . $product->product_image) }}"
+                            <img src="{{ asset('storage/uploads/images/' . $product->product_category . '/' . $product->product_image_second) }}"
                                 alt="Product Image Small"
                                 class="w-20 h-20 border hover:blur-md hover:bg-stone-400 hover:cursor-pointer"
                                 id="smallImage" />
@@ -66,16 +66,13 @@
                             <label for="colors">Available Colors <span class="text-red-600">*</span></label>
                             <div class="flex justify-center items-center gap-4 py-2" id="colors">
                                 <input id="red" name="product_color" value="red" type="radio"
-                                    class="h-6 w-6 accent-primary rounded-sm"
-                                    {{ $product->product_color === 'red' ? 'checked' : '' }} />
+                                    class="h-6 w-6 accent-primary rounded-sm" {{ $product->product_color === 'red' ? 'checked' : '' }} />
                                 <label for="red">Crimson Red</label>
                                 <input id="blue" name="product_color" value="blue" type="radio"
-                                    class="h-6 w-6 accent-primary rounded-sm"
-                                    {{ $product->product_color === 'blue' ? 'checked' : '' }} />
+                                    class="h-6 w-6 accent-primary rounded-sm" {{ $product->product_color === 'blue' ? 'checked' : '' }} />
                                 <label for="blue">Blueish Blue</label>
                                 <input id="black" name="product_color" value="black" type="radio"
-                                    class="h-6 w-6 accent-primary rounded-sm"
-                                    {{ $product->product_color === 'black' ? 'checked' : '' }} />
+                                    class="h-6 w-6 accent-primary rounded-sm" {{ $product->product_color === 'black' ? 'checked' : '' }} />
                                 <label for="black">Pitch Black</label>
                             </div>
                         </div>
@@ -84,18 +81,18 @@
                         <div
                             class="row-span-1 row-start-8 lg:row-span-1 lg:col-span-2 lg:col-start-2 lg:row-start-3 flex flex-col p-2">
                             <label for="product_description">Product Description <span class="text-red-600">*</span></label>
-                            <textarea id="product_description" name="product_description" class="w-full bg-gray-200 rounded-sm" rows="2"
-                                required>
-                                                                                                                            {{ $product->product_description }}
-                                                                                                                        </textarea>
+                            <textarea id="product_description" name="product_description"
+                                class="w-full bg-gray-200 rounded-sm" rows="2" required>
+                                                                                                                                    {{ $product->product_description }}
+                                                                                                                                </textarea>
                         </div>
 
                         <!-- PRODUCT IMAGE UPLOAD -->
                         <div class="row-span-2 row-start-9 lg:row-span-2 lg:col-span-2 lg:col-start-2 lg:row-start-4 p-2">
                             <div
                                 class="w-full h-full bg-gray-200 rounded-md flex flex-col items-center justify-center gap-2 border border-dashed">
-                                <p class="font-bold text-lg text-primary">Drag and Drop an image to Upload</p>
-                                <p>or</p>
+                                {{-- <p class="font-bold text-lg text-primary">Drag and Drop an image to Upload</p>
+                                <p>or</p> --}}
                                 <label for="fileInput"
                                     class="bg-primary text-white h-10 w-48 rounded-md cursor-pointer flex justify-center items-center">Browse
                                     Files
@@ -132,6 +129,6 @@
                 </form>
             </div>
         </div>
-    @endsection
+@endsection
 
     @vite(['resources/js/reloadFormImages.js', 'resources/js/clearImage.js', 'resources/js/deleteProduct.js'])
