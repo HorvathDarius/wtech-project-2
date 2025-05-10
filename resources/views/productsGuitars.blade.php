@@ -138,6 +138,6 @@
                 </a>
             @endforeach
         </div>
-        {{ $products->links() }}
+        {{ $products->appends(request()->query())->links() }}
     </main>
 @endsection
