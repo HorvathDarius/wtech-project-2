@@ -5,7 +5,8 @@
         <!-- Banner section -->
         <div class="relative h-150 overflow-hidden py-8">
             <picture class="w-full h-full block">
-                <source media="(min-width: 768px)" srcset="{{ asset('storage/uploads/images/guitar/badass_guitar.png') }}" />
+                <source media="(min-width: 768px)"
+                    srcset="{{ asset('storage/uploads/images/guitar/badass_guitar.png') }}" />
                 <img src="{{ asset('storage/uploads/images/guitar/promotion_vertical.png') }}" alt="Guitar"
                     class="w-full h-full object-cover" />
             </picture>
@@ -45,9 +46,6 @@
                         <h3 class="font-bold text-l">{{ $item->product_visible_name }}</h3>
                         <p class="text-sm">{{ $item->product_price }} €</p>
                         <p class="text-sm text-gray-600">3 colors</p>
-                        <div class="flex justify-end mt-2">
-                            <button class="text-xl">🛒</button>
-                        </div>
                     </div>
                 </a>
             @endforeach
@@ -71,11 +69,8 @@
                         <h3 class="font-bold text-l">{{ $item->product_visible_name }}</h3>
                         <p class="text-sm">{{ $item->product_price }} €</p>
                         <p class="text-sm text-gray-600">3 colors</p>
-                        <div class="flex justify-end mt-2">
-                            <button class="text-xl">🛒</button>
-                        </div>
                     </div>
                 </a>
             @endforeach
         </div>
-    @endsection
+@endsection

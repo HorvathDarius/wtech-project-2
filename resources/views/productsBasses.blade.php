@@ -131,9 +131,6 @@
                         <h3 class="font-bold text-l">{{ $item->product_visible_name }}</h3>
                         <p class="text-sm">{{ $item->product_price }} €</p>
                         <p class="text-sm text-gray-600">3 colors</p>
-                        <div class="flex justify-end mt-2">
-                            <button class="text-xl">🛒</button>
-                        </div>
                     </div>
                 </a>
             @endforeach

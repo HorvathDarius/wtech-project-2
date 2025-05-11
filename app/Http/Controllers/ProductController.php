@@ -28,14 +28,16 @@ class ProductController extends Controller
     {
         $paths = [];
 
-        foreach ($request->file('product_image') as $file) {
-            $categoryFolder = in_array($request->product_category, ['guitar', 'bass', 'amp'])
-                ? $request->product_category
-                : 'other';
+        if ($request->hasFile('product_image')) {
+            foreach ($request->file('product_image') as $file) {
+                $categoryFolder = in_array($request->product_category, ['guitar', 'bass', 'amp'])
+                    ? $request->product_category
+                    : 'other';
 
-            $storedPath = $file->store("/uploads/images/" . $categoryFolder, "public");
-            $filename = basename($storedPath);
-            $paths[] = $filename;
+                $storedPath = $file->store("/uploads/images/" . $categoryFolder, "public");
+                $filename = basename($storedPath);
+                $paths[] = $filename;
+            }
         }
 
         $product = Product::create([
@@ -46,8 +48,8 @@ class ProductController extends Controller
             'product_category' => $request->product_category,
             'product_color' => $request->product_color,
             'quantity' => $request->quantity,
-            'product_image' => $paths[0],
-            'product_image_second' => $paths[1],
+            'product_image' => $paths[0] ?? null,
+            'product_image_second' => $paths[1] ?? null,
         ]);
 
         return redirect()->route('products.editProduct', ['id' => $product->id]);
@@ -59,10 +61,6 @@ class ProductController extends Controller
     public function edit($product_id, Request $request)
     {
         $product = Product::findOrFail($product_id);
-
-        // $request->validate([
-        //     'product_image.*' => 'mimes:jpg,png,pdf|max:2048',
-        // ]);
 
         $files = $request->file('product_image');
         $files = is_array($files) ? $files : ($files ? [$files] : []);
@@ -88,8 +86,8 @@ class ProductController extends Controller
             }
 
             // Set new images to db
-            $product->product_image = $paths[0] ?? null;
-            $product->product_image_second = $paths[1] ?? null;
+            $product->product_image = $paths[0] ?? $product->product_image;
+            $product->product_image_second = $paths[1] ?? $product->product_image_second;
         }
 
         $oldCategory = $product->product_category;
