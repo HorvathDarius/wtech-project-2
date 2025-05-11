@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\PaymentInformation;
+use App\Models\Product;
 use App\Models\ShoppingCart;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -58,6 +59,31 @@ class OrderController extends Controller
             'products' => $shoppingCart->products,
             'totalPrice' => $totalPrice,
             'paymentInfo' => $paymentInformation
+        ]);
+    }
+
+    public function createAnonymous(string $id)
+    {
+        $shoppingCart = ShoppingCart::query()
+            ->with(['products'])
+            ->where('id', $id)
+            ->first();
+
+        if (!$shoppingCart->products() || $shoppingCart->products()->count() == 0) {
+            return view('cartFallback');
+        }
+
+        $totalPrice = 0;
+        foreach ($shoppingCart->products as $products) {
+            $totalPrice += $products->product->product_price * $products->quantity;
+        }
+
+        return view('checkout', [
+            'user' => null,
+            'products' => $shoppingCart->products,
+            'totalPrice' => $totalPrice,
+            'paymentInfo' => null,
+            'shoppingCartId' => $id,
         ]);
     }
 
@@ -125,6 +151,61 @@ class OrderController extends Controller
                 'product_id' => $product->product_id,
                 'quantity' => $product->quantity,
             ]);
+
+            // Update product quantity
+            $productInDb = Product::find($product->product_id);
+            $productInDb->quantity -= $product->quantity;
+            $productInDb->save();
+        }
+
+        // Delete all products in shopping cart
+        foreach ($shoppingCart->products as $product) {
+            $product->delete();
+        }
+
+        return view('orderSuccess', [
+            'order' => $order,
+        ]);
+    }
+
+    public function storeAnonymous(Request $request, string $id)
+    {
+        // Create order
+        $order = Order::create([
+            'user_id' => 0,
+            'order_status' => 'preparing',
+            'total_price' => $request->totalPrice,
+            'address' => $request->address,
+            'country' => $request->country,
+            'region' => $request->region,
+            'city' => $request->city,
+            'zip_code' => $request->zip_code,
+            'shipping_method' => $request->delivery,
+        ]);
+
+        // If user has no payment information, create it based on order info
+        $paymentCreated = PaymentInformation::create(
+            [
+                'user_id' => 0,
+                'card_number' => $request->card_number,
+                'name_on_card' => $request->name_on_card,
+            ]
+
+        );
+
+        // Get order items
+        $shoppingCart = ShoppingCart::query()
+            ->with(['products'])
+            ->where('id', $id)
+            ->first();
+
+        // Create Order items    
+        foreach ($shoppingCart->products as $product) {
+            OrderProduct::create([
+                'order_id' => $order->id,
+                'product_id' => $product->product_id,
+                'quantity' => $product->quantity,
+            ]);
         }
 
         // Delete all products in shopping cart
@@ -179,14 +260,6 @@ class OrderController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
@@ -199,13 +272,5 @@ class OrderController extends Controller
         $order->order_status = $request->order_status;
         $order->save();
         return redirect()->route('order.show', $order->id);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Order $order)
-    {
-        //
     }
 }
