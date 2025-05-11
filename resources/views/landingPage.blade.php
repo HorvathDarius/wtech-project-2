@@ -16,7 +16,7 @@
                 <div
                     class="text-right space-y-4 md:-translate-y-16 md:-translate-x-4 transform translate-y-50 -translate-x-4">
                     <h1 class="text-black text-sm md:text-5xl font-bold">New limited time offer</h1>
-                    <a href="{{ route('productPage') }}">
+                    <a href="/product/Jackson-black">
                         <button
                             class="bg-primary hover:bg-red-600 text-white text-sm md:text-lg md:px-6 px-1 py-1 rounded-md cursor-pointer">
                             Learn More

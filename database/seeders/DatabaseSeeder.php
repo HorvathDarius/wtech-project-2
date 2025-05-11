@@ -104,6 +104,23 @@ class DatabaseSeeder extends Seeder
             'A modern design with no headstock for better tuning stability.'
         ];
 
+        for ($i = 0; $i < 3; $i++) {
+            $name = "Jackson";
+            $description = $guitarDescriptions[0];
+            Product::create([
+                'product_visible_name' => $name,
+                'product_link_name' => $name . '-' . $colors[$i],
+                'product_price' => rand(100, 10000),
+                'product_category' => $categories[0],
+                'product_color' => $colors[$i],
+                'quantity' => rand(1, 100),
+                'product_description' => $description,
+                'product_image' => 'badass_guitar.png',
+                'product_image_second' => 'badass_guitar.png',
+            ]);
+        }
+        ;
+
         // Create guitars
         for ($i = 0; $i < 10; $i++) {
 
@@ -129,6 +146,7 @@ class DatabaseSeeder extends Seeder
                 'quantity' => rand(1, 100),
                 'product_description' => $description,
                 'product_image' => $i . '_' . $colors[1] . '.png',
+                'product_image_second' => $i . '_' . $colors[1] . '.png',
             ]);
             Product::create([
                 'product_visible_name' => $name,
@@ -139,6 +157,7 @@ class DatabaseSeeder extends Seeder
                 'quantity' => rand(1, 100),
                 'product_description' => $description,
                 'product_image' => $i . '_' . $colors[2] . '.png',
+                'product_image_second' => $i . '_' . $colors[2] . '.png',
             ]);
         }
 
@@ -180,6 +199,7 @@ class DatabaseSeeder extends Seeder
                 'quantity' => rand(1, 50),
                 'product_description' => 'This is a great instrument.',
                 'product_image' => 'bass_placeholder.webp',
+                'product_image_second' => 'bass_placeholder.webp',
             ]);
             Product::create([
                 'product_visible_name' => $name,
@@ -190,6 +210,7 @@ class DatabaseSeeder extends Seeder
                 'quantity' => rand(1, 50),
                 'product_description' => 'This is a great instrument.',
                 'product_image' => 'bass_placeholder.webp',
+                'product_image_second' => 'bass_placeholder.webp',
             ]);
             Product::create([
                 'product_visible_name' => $name,
@@ -200,6 +221,7 @@ class DatabaseSeeder extends Seeder
                 'quantity' => rand(1, 50),
                 'product_description' => 'This is a great instrument.',
                 'product_image' => 'bass_placeholder.webp',
+                'product_image_second' => 'bass_placeholder.webp',
             ]);
         }
 
@@ -242,6 +264,7 @@ class DatabaseSeeder extends Seeder
                 'quantity' => rand(1, 50),
                 'product_description' => $description,
                 'product_image' => 'amp_placeholder.webp',
+                'product_image_second' => 'amp_placeholder.webp',
             ]);
             Product::create([
                 'product_visible_name' => $name,
@@ -252,6 +275,7 @@ class DatabaseSeeder extends Seeder
                 'quantity' => rand(1, 50),
                 'product_description' => $description,
                 'product_image' => 'amp_placeholder.webp',
+                'product_image_second' => 'amp_placeholder.webp',
             ]);
             Product::create([
                 'product_visible_name' => $name,
@@ -262,6 +286,7 @@ class DatabaseSeeder extends Seeder
                 'quantity' => rand(1, 50),
                 'product_description' => $description,
                 'product_image' => 'amp_placeholder.webp',
+                'product_image_second' => 'amp_placeholder.webp',
             ]);
         }
 
